@@ -1,25 +1,4 @@
 <main>
-  <div class="table-wrapper">
-    <table>
-      <thead>
-      <tr class="header-row">
-        <th></th>
-        <th>{{'imię' | translate}}</th>
-        <th>{{'wiek' | translate}}</th>
-        <th>{{'data urodzenia' | translate}}</th>
-        <th>{{'życiorys' | translate}}</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr
-        app-user-row
-        class="row"
-        *ngFor="let userData of data"
-        [user]="userData">
-      </tr>
-      </tbody>
-    </table>
-  </div>
+  <app-table class="table-wrapper"></app-table>
   <app-table-controller></app-table-controller>
 </main>

@@ -1,4 +1,4 @@
-import {UserData} from "./userData.model";
+import {User} from "./user.model";
 
 let usersWithoutID = [
   {
@@ -93,7 +93,7 @@ let usersWithoutID = [
   }
 ];
 
-export let users : UserData[] = [...usersWithoutID, ...usersWithoutID].map((user,index) => {return {...user, id: index}});
+export let users : User[] = [...usersWithoutID, ...usersWithoutID].map((user, index) => {return {...user, id: index}});
 export let id = users[users.length - 1].id;
 
 

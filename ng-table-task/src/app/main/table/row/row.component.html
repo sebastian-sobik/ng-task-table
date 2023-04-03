@@ -1,10 +1,11 @@
+<tr [ngClass]="rowClasses">
   <td class="row-checkbox">
     <form>
       <label class="user-select" for="user-select">
         <i class="bi bi-square" (click)="onSelect()" [ngClass]="checkboxClasses"></i>
       </label>
       <input type="checkbox" id="user-select">
-    </form>
+          </form>
   </td>
   <td class="cell cell-name">{{user.name}}</td>
   <td class="cell cell-age">{{user.age}}</td>
@@ -14,8 +15,9 @@
     <span class="menu">
       <i (click)="toggled = !toggled; setMenuClasses()" class="bi bi-three-dots-vertical"></i>
       <span [ngClass]="menuClasses">
-        <button class="btn-menu" type="button">{{'edytuj' | translate}}</button>
-        <button class="btn-menu" type="button">{{'usuń' | translate}}</button>
+        <button class="btn-menu" (click)="onEdit()" type="button">{{'edytuj' | translate}}</button>
+        <button class="btn-menu" (click)="onDelete()" type="button">{{'usuń' | translate}}</button>
       </span>
     </span>
   </td>
+</tr>

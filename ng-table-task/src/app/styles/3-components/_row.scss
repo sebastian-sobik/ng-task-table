@@ -2,12 +2,18 @@
 @use "../1-abstract/colors" as *;
 
 .row {
-  position: relative;
-  height: $table-row-height;
+  td {
+    padding: 8px 0;
+  }
   transition: background-color 250ms ease-out;
 
   &:hover {
     cursor: pointer;
     background-color: $clr-row-hover-bg
   }
+
+}
+
+.row-selected {
+  background-color: $clr-row-selected-bg;
 }
