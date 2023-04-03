@@ -1,1 +1,25 @@
-<p>main works!</p>
+<main>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+      <tr class="header-row">
+        <th></th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Birth Date</th>
+        <th>Biography</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr
+        app-user-row
+        class="row"
+        *ngFor="let userData of data"
+        [user]="userData">
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-table-controller></app-table-controller>
+</main>

@@ -1,0 +1,40 @@
+//Font-size
+$font-size-petit: 12px;
+$font-size-small: 16px;
+$font-size-medium: 20px;
+
+//Font-weight
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 600;
+
+// Fonts
+$font-family-default: "Poppins", "sans-serif";
+$font-family-second: "Work Sans", "sans-serif";
+
+// Letter spacing
+$font-letter-spacing-header: 1.5px;
+$font-letter-spacing-primary: 0.5px;
+
+// Icons
+$icon-size: 25px;
+
+// Table
+$table-max-width: 1100px;
+$table-max-height: 540px;
+$table-padding: 0 90px 20px;
+
+// Table rows
+$table-row-height: 40px;
+
+// Table columns
+$column-width-checkbox: 5%;
+$column-width-name: 25%;
+$column-width-age: 10%;
+$column-width-birthDate: 20%;
+$column-width-biography: 35%;
+$column-width-menu: 5%;
+
+// Transitions
+$transition-menu: background-color 250ms ease-out;
+$transition-menu-options: left 150ms ease-out;

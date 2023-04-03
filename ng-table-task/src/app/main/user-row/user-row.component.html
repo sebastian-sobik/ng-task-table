@@ -1,0 +1,21 @@
+  <td class="row-checkbox">
+    <form>
+      <label class="user-select" for="user-select">
+        <i class="bi bi-square" (click)="selected = !selected;setCheckboxClasses()" [ngClass]="checkboxClasses"></i>
+      </label>
+      <input type="checkbox" id="user-select">
+    </form>
+  </td>
+  <td class="cell cell-name">{{user.name}}</td>
+  <td class="cell cell-age">{{user.age}}</td>
+  <td class="cell cell-birthDate">{{user.birthDate | date:"d MMMM, y"}}</td>
+  <td class="cell cell-biography">{{user.biography}}</td>
+  <td class="cell cell-menu">
+    <span class="menu">
+      <i (click)="toggled = !toggled; setMenuClasses()" class="bi bi-three-dots-vertical"></i>
+      <span [ngClass]="menuClasses">
+        <button class="btn-menu" type="button">{{'edytuj' | translate}}</button>
+        <button class="btn-menu" type="button">{{'usuń' | translate}}</button>
+      </span>
+    </span>
+  </td>

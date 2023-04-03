@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {UserData} from "../userData.model";
+import {users, id} from "../fakeUsers";
 
 @Component({
   selector: 'app-main',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-
+  data: UserData[] = [...users];
 }

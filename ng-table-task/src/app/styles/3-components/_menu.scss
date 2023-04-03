@@ -1,0 +1,30 @@
+@use "../1-abstract/variables" as *;
+@use "../1-abstract/colors" as *;
+@use "../2-modules/btn-menu" as *;
+@use "../2-modules/menu-options" as *;
+
+.menu {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 100%;
+  transition: $transition-menu;
+
+  &:hover {
+    background-color: $clr-menu-hover-bg;
+  }
+
+  .bi-three-dots-vertical {
+    font-size: 16px;
+    padding: 5px;
+    color: black;
+  }
+
+  .menu-options {
+    @include menu-options;
+  }
+
+  .btn-menu {
+    @include btn-menu;
+  }
+}

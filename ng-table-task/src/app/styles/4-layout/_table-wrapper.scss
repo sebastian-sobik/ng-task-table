@@ -1,0 +1,11 @@
+@use "../1-abstract/variables" as *;
+
+.table-wrapper {
+  max-width: $table-max-width;
+  max-height: $table-max-height;
+  padding: $table-padding;
+  overflow-y: scroll;
+
+  width: 100%;
+  //border: 1px solid black;
+}

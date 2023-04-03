@@ -1,1 +1,12 @@
-<p>header works!</p>
+<form [formGroup]="form">
+  <label for="lang">Pick language</label>
+  <select
+    formControlName="language"
+    id="lang"
+    (change)="onChangeLang()"
+  >
+    <option value="pl">Polish</option>
+    <option value="en">English</option>
+  </select>
+</form>
+<h2>{{ 'welcomeMessage' | translate }}</h2>

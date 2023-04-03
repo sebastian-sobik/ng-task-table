@@ -1,0 +1,13 @@
+@use "../1-abstract/variables" as *;
+
+@mixin menu-options {
+  visibility: hidden;
+  position: absolute;
+  left: 30px;
+  transition: $transition-menu-options;
+
+  &.visible {
+    left: 35px;
+    visibility: visible;
+  }
+}
