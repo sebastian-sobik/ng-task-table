@@ -1,4 +1,9 @@
+@use "../1-abstract/variables" as *;
+
 main {
   display: flex;
   justify-content: center;
+  border: 1px solid sandybrown;
+  padding: $main-padding;
+  width: 100%;
 }

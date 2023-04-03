@@ -1,12 +1,32 @@
-<form [formGroup]="form">
-  <label for="lang">Pick language</label>
-  <select
-    formControlName="language"
-    id="lang"
-    (change)="onChangeLang()"
-  >
-    <option value="pl">Polish</option>
-    <option value="en">English</option>
-  </select>
+<form class="form-language" [formGroup]="form" >
+  <span>
+    <input
+      (change)="onChangeLang()"
+      type="radio"
+      id="english"
+      value="en"
+      name="language"
+      formControlName = language
+    >
+    <label for="english">english</label>
+  </span>
+  <span>|</span>
+  <span>
+    <input
+      (change)="onChangeLang()"
+      type="radio"
+      id="polish"
+      value="pl"
+      name="language"
+      formControlName = language
+    >
+    <label for="polish">polish</label>
+  </span>
 </form>
-<h2>{{ 'welcomeMessage' | translate }}</h2>
+<div class="header-routes">
+  <a routerLink="/main" routerLinkActive="active">main</a>
+  <span>|</span>
+  <a routerLink="/views" routerLinkActive="active">views</a>
+</div>
+<div class="form-language"></div>
+

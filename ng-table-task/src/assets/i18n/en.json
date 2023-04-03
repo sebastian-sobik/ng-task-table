@@ -1,5 +1,10 @@
 {
   "welcomeMessage": "App is working in English!",
   "edytuj": "edit",
-  "usuń": "delete"
+  "usuń": "delete",
+  "menu": "menu",
+  "imię": "name",
+  "wiek": "age",
+  "data urodzenia": "birth date",
+  "życiorys": "biography"
 }
