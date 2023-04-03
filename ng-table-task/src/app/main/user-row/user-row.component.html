@@ -8,7 +8,7 @@
   </td>
   <td class="cell cell-name">{{user.name}}</td>
   <td class="cell cell-age">{{user.age}}</td>
-  <td class="cell cell-birthDate">{{user.birthDate | date:"d MMMM, y"}}</td>
+  <td class="cell cell-birthDate">{{user.birthDate | date:"d MMMM, y":'':translateService.currentLang}}</td>
   <td class="cell cell-biography">{{user.biography}}</td>
   <td class="cell cell-menu">
     <span class="menu">

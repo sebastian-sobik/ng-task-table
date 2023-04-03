@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
@@ -13,10 +13,16 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { UserRowComponent } from './main/user-row/user-row.component';
 import { TableControllerComponent } from './main/table-controller/table-controller.component';
+import {registerLocaleData} from "@angular/common";
+import localePl from '@angular/common/locales/pl';
+import localeEn from '@angular/common/locales/en';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+registerLocaleData(localePl);
+registerLocaleData(localeEn);
 
 @NgModule({
   declarations: [
@@ -41,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

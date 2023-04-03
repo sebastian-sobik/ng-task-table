@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserData} from "../../userData.model";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: '[app-user-row]',
@@ -12,6 +13,8 @@ export class UserRowComponent implements OnInit{
   toggled = false;
   checkboxClasses: Record<string, boolean> = {}
   menuClasses: Record<string, boolean> = {}
+
+  constructor(public translateService: TranslateService) { }
 
   ngOnInit() {
     this.setCheckboxClasses();

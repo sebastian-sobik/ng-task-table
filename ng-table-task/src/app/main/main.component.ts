@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {UserData} from "../userData.model";
 import {users, id} from "../fakeUsers";
 
