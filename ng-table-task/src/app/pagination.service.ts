@@ -1,4 +1,4 @@
-import {Injectable, OnDestroy, OnInit} from '@angular/core';
+import {forwardRef, Inject, Injectable, OnDestroy, OnInit} from '@angular/core';
 import {UserDataService} from "./user-data.service";
 import {BehaviorSubject, Subject, Subscription} from "rxjs";
 import {_Range} from "./range.model";
@@ -16,7 +16,7 @@ export class PaginationService implements  OnDestroy {
   private step: stepCount = 10;
   private maxIndex: number = 0; //initialised in ngOnInit
 
-  constructor(private userDataService: UserDataService) {
+  constructor(@Inject(forwardRef(() => UserDataService)) private userDataService: UserDataService) {
     this.rangeUpdated.next({from: this.from, to: this.to});
     this.subscriptionIndex = this.userDataService.maxIndexUpdated.subscribe(
       newMaxIndex => this.maxIndex = newMaxIndex
@@ -27,12 +27,37 @@ export class PaginationService implements  OnDestroy {
     return {from: this.from + 1, to: this.to + 1}
   }
 
+  fakeChange() {
+    let step = this.step;
+    switch (step) {
+      case 10: {
+        this.changeStep(20)
+        console.log(20)
+        break;
+      }
+      default: {
+        this.changeStep(10)
+        console.log(10)
+        break;
+      }
+    }
+  }
 
   changeStep(step: stepCount) {
+    if(step > this.maxIndex) {
+      throw Error('Invalid step count')
+    }
+
     this.step = step;
     if(this.to + step > this.maxIndex) {
       this.from = this.maxIndex - step + 1
+      if(this.from < 0) {
+        this.from = 0;
+      }
       this.to = this.maxIndex;
+    }
+    else {
+      this.to = this.from + step - 1
     }
     this.rangeUpdated.next({from: this.from, to: this.to})
   }
@@ -52,10 +77,7 @@ export class PaginationService implements  OnDestroy {
       this.from = 0;
       this.to = this.step - 1;
     } else if (step > 0 && this.to + step > this.maxIndex) {
-      if(this.to === this.maxIndex) {
-        return;
-      }
-      else {
+      if(this.to !== this.maxIndex) {
         this.from = this.maxIndex - this.step - 1;
         this.to = this.maxIndex;
       }
@@ -63,11 +85,6 @@ export class PaginationService implements  OnDestroy {
       this.from += step;
       this.to += step;
     }
-    console.log(
-      this.from,
-      ' | ',
-      this.to
-    )
   }
 
   ngOnDestroy() {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {User} from "./user.model";
 import {users} from './fakeUsers';
 import {BehaviorSubject} from "rxjs";
+import {PaginationService} from "./pagination.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,16 @@ export class UserDataService {
   maxIndexUpdated: BehaviorSubject<number> = new BehaviorSubject<number>((users.length - 1));
   private users : User[] = users;
 
-  ngOnInit() {
+  constructor(private pagination: PaginationService) {
+    this.pagination.rangeUpdated.subscribe(
+      ({from, to}) => this.usersUpdated.next(this.users.slice(from, to))
+    )
   }
 
-  constructor() { }
+  getUsers() : User[] {
+    return [...this.users];
+  }
+
+
+
 }

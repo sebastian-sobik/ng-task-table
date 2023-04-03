@@ -42,4 +42,8 @@ export class TableControllerComponent implements OnInit, OnDestroy {
   onIncreaseRange() {
     this.pagination.goForward()
   }
+
+  __test__() {
+    this.pagination.fakeChange()
+  }
 }
