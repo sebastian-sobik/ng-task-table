@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {UserData} from "../../userData.model";
 import {TranslateService} from "@ngx-translate/core";
 
@@ -8,7 +8,9 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./user-row.component.scss']
 })
 export class UserRowComponent implements OnInit{
+  @ViewChild('app-user-row') test!: ElementRef;
   @Input() user!: UserData;
+  @Output() isSelectedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   selected = false;
   toggled = false;
   checkboxClasses: Record<string, boolean> = {}
@@ -34,5 +36,12 @@ export class UserRowComponent implements OnInit{
       'menu-options': true,
       'visible': this.toggled
     }
+  }
+
+  onSelect() {
+    this.selected = !this.selected;
+    this.setCheckboxClasses();
+    this.isSelectedChange.emit(this.selected)
+    console.log(this.test);
   }
 }

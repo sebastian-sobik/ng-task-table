@@ -9,7 +9,7 @@ table {
   border-collapse: collapse;
   //border: 1px solid black;
 
-  input[type=checkbox]{
+  input[type=checkbox] {
     display: none;
   }
 }
@@ -25,11 +25,12 @@ thead {
   letter-spacing: $font-letter-spacing-header;
 }
 
-// Table body
-tbody::before {
-  line-height: 1em;
-  content: "\200C";
-  display: block;
+thead th {
+  height: 40px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: white
 }
 
 // Table column cell
@@ -41,13 +42,42 @@ tbody::before {
   color: $clr-font-primary;
 }
 
+td:first-child {
+  padding-left:10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+td:last-child {
+  padding-right:10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 // Setting column width
-.cell-name{ width: $column-width-name }
-.cell-birthDate { width: $column-width-birthDate }
-.cell-age { width: $column-width-age }
-.cell-biography { width: $column-width-biography }
-.cell-checkbox { width: $column-width-checkbox }
-.cell-menu { width: $column-width-menu}
+.cell-name {
+  width: $column-width-name
+}
+
+.cell-birthDate {
+  width: $column-width-birthDate
+}
+
+.cell-age {
+  width: $column-width-age
+}
+
+.cell-biography {
+  width: $column-width-biography
+}
+
+.cell-checkbox {
+  width: $column-width-checkbox
+}
+
+.cell-menu {
+  width: $column-width-menu
+}
 
 // Styling specific column
 .cell-biography {
@@ -62,4 +92,5 @@ tbody::before {
 .cell-name {
   text-transform: uppercase;
 }
+
 

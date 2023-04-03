@@ -1,7 +1,7 @@
   <td class="row-checkbox">
     <form>
       <label class="user-select" for="user-select">
-        <i class="bi bi-square" (click)="selected = !selected;setCheckboxClasses()" [ngClass]="checkboxClasses"></i>
+        <i class="bi bi-square" (click)="onSelect()" [ngClass]="checkboxClasses"></i>
       </label>
       <input type="checkbox" id="user-select">
     </form>

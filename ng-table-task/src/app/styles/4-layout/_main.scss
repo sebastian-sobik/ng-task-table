@@ -1,9 +1,11 @@
 @use "../1-abstract/variables" as *;
+@use "../1-abstract/mixins" as *;
 
 main {
-  display: flex;
-  justify-content: center;
-  border: 1px solid sandybrown;
+  @include flex(center,center,column);
+  flex-wrap: wrap;
+  align-content: center;
   padding: $main-padding;
   width: 100%;
+  gap: 40px;
 }

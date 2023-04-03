@@ -1,0 +1,42 @@
+@use "../1-abstract/mixins" as *;
+@use "../1-abstract/colors" as *;
+@use "../1-abstract/variables" as *;
+
+app-table-controller {
+  @include flex(space-between, null, row);
+  max-width: 750px;
+  width: 100%;
+  padding: 20px 40px;
+  border-radius: 1rem;
+
+  color: $clr-pagination-font;
+  background-color: $clr-pagination-bg;
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  .btn-side {
+    width: 45px;
+    height: 45px;
+    background-color: $clr-btn-normal;
+    border-radius: 100%;
+
+    &:hover {
+      filter: brightness(0.95);
+    }
+
+    i {
+      color: $clr-icon;
+      font-size: 20px;
+    }
+  }
+
+  .pagination {
+    @include flex(space-between, center, row);
+    width: 140px;
+    font-family: $font-family-default;
+    font-weight: $font-weight-medium;
+  }
+
+}
