@@ -11,6 +11,8 @@ export class UserDataService {
   maxIndexUpdated: BehaviorSubject<number> = new BehaviorSubject<number>((users.length - 1));
   private users : User[] = users;
 
+  ngOnInit() {
+  }
 
   constructor() { }
 }
