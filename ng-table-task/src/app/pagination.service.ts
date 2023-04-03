@@ -8,19 +8,19 @@ type stepCount = 10 | 20 | 50;
 @Injectable({
   providedIn: 'root'
 })
-export class PaginationService implements  OnDestroy {
+export class PaginationService {
   public rangeUpdated: Subject<_Range> = new Subject<_Range>();
-  private subscriptionIndex: Subscription | undefined;
   private from: number = 0;
   private to: number = 9;
   private step: stepCount = 10;
   private maxIndex: number = 0; //initialised in ngOnInit
 
-  constructor(@Inject(forwardRef(() => UserDataService)) private userDataService: UserDataService) {
+  constructor() {
     this.rangeUpdated.next({from: this.from, to: this.to});
-    this.subscriptionIndex = this.userDataService.maxIndexUpdated.subscribe(
-      newMaxIndex => this.maxIndex = newMaxIndex
-    );
+  }
+
+  setMaxIndex(maxIndex: number) {
+    this.maxIndex = maxIndex;
   }
 
   getRange() {
@@ -32,34 +32,17 @@ export class PaginationService implements  OnDestroy {
     switch (step) {
       case 10: {
         this.changeStep(20)
-        console.log(20)
+        break;
+      }
+      case 20: {
+        this.changeStep(50)
         break;
       }
       default: {
         this.changeStep(10)
-        console.log(10)
         break;
       }
     }
-  }
-
-  changeStep(step: stepCount) {
-    if(step > this.maxIndex) {
-      throw Error('Invalid step count')
-    }
-
-    this.step = step;
-    if(this.to + step > this.maxIndex) {
-      this.from = this.maxIndex - step + 1
-      if(this.from < 0) {
-        this.from = 0;
-      }
-      this.to = this.maxIndex;
-    }
-    else {
-      this.to = this.from + step - 1
-    }
-    this.rangeUpdated.next({from: this.from, to: this.to})
   }
 
   goBackward() {
@@ -87,8 +70,23 @@ export class PaginationService implements  OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    this.subscriptionIndex?.unsubscribe();
+  changeStep(step: stepCount) {
+    if(step > this.maxIndex) {
+      throw Error('Invalid step count')
+    }
+
+    this.step = step;
+    if(this.to + step > this.maxIndex) {
+      this.from = this.maxIndex - step + 1
+      if(this.from < 0) {
+        this.from = 0;
+      }
+      this.to = this.maxIndex;
+    }
+    else {
+      this.to = this.from + step - 1
+    }
+    this.rangeUpdated.next({from: this.from, to: this.to})
   }
 
 }
