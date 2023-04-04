@@ -25,30 +25,13 @@ export class PaginationService {
     // usunęliśmy z końca listy, wychodzimy poza listę
     if(this.to > this.maxIndex) {
       this.to = this.maxIndex;
+      this.from = this.to - this.step + 1;
     }
     this.rangeUpdated.next({from: this.from, to: this.to});
   }
 
   getRangeIndexes() {
     return {from: this.from, to: this.to }
-  }
-
-  fakeChange() {
-    let step = this.step;
-    switch (step) {
-      case 10: {
-        this.changeStep(20)
-        break;
-      }
-      case 20: {
-        this.changeStep(50)
-        break;
-      }
-      default: {
-        this.changeStep(10)
-        break;
-      }
-    }
   }
 
   goBackward() {
@@ -83,8 +66,8 @@ export class PaginationService {
 
     this.step = step;
     if(this.to + step > this.maxIndex) {
-      this.from = this.maxIndex - step + 1
-      if(this.from < 0) {
+      this.from = this.maxIndex - step + 1;
+      if(this.from < 0) {it
         this.from = 0;
       }
       this.to = this.maxIndex;
@@ -93,6 +76,24 @@ export class PaginationService {
       this.to = this.from + step - 1
     }
     this.rangeUpdated.next({from: this.from, to: this.to})
+  }
+
+  fakeChange() {
+    let step = this.step;
+    switch (step) {
+      case 10: {
+        this.changeStep(20)
+        break;
+      }
+      case 20: {
+        this.changeStep(50)
+        break;
+      }
+      default: {
+        this.changeStep(10)
+        break;
+      }
+    }
   }
 
 }

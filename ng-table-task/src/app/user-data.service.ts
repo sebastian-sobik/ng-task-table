@@ -36,16 +36,13 @@ export class UserDataService {
 
   removeSelectedUsers(): void {
     let idToDelete = this.selectedUsersService.getSelectedId();
-    // remove users
-    let nDeleted: number = 0;
-    this.users = users.filter(
+    this.users = this.users.filter(
       user => {
         const index = idToDelete.indexOf(user.id);
         if (index < 0) {
           return true;
         } else {
           idToDelete.splice(index, 1);
-          nDeleted++;
           return false;
         }
       })
