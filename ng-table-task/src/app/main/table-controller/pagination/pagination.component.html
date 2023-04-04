@@ -1,0 +1,17 @@
+<button class="btn-side" type="button">
+  <i class="bi bi-plus"></i>
+</button>
+<div class="pagination">
+  <button type="button" (click)="onDecreaseRange()">
+    <i class="bi bi-chevron-left"></i>
+  </button>
+  <span>
+{{range?.from}} {{'of'}} {{range?.to}}
+</span>
+  <button type="button" (click)="onIncreaseRange()">
+    <i class="bi bi-chevron-right"></i>
+  </button>
+</div>
+<button class="btn-side hidden" type="button">
+  <i class="bi bi-x"></i>
+</button>

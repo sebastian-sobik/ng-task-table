@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {User} from "../user.model";
-import {users, id} from "../fakeUsers";
 
 @Component({
   selector: 'app-main',

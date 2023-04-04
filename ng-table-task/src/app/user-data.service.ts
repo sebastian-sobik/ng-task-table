@@ -4,6 +4,7 @@ import {users} from './fakeUsers';
 import {BehaviorSubject, Subject} from "rxjs";
 import {PaginationService} from "./pagination.service";
 import {_Range} from "./range.model";
+import {SelectedUsersService} from "./selected-users.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class UserDataService {
   usersUpdated: Subject<User[]> = new Subject<User[]>();
   private users: User[] = users;
 
-  constructor(private pagination: PaginationService) {
+  constructor(private pagination: PaginationService,
+              private selectedUsersService: SelectedUsersService)
+  {
     this.pagination.rangeUpdated.subscribe(
       ({from, to}) => {
         this.usersUpdated.next(this.users.slice(from, to + 1))
@@ -31,22 +34,21 @@ export class UserDataService {
     this.pagination.setMaxIndex(this.users.length - 1);
   }
 
-  removeUsers(idToDelete: number[]): void {
+  removeSelectedUsers(): void {
+    let idToDelete = this.selectedUsersService.getSelectedId();
     // remove users
     let nDeleted: number = 0;
     this.users = users.filter(
       user => {
         const index = idToDelete.indexOf(user.id);
-        if(user.id < 0) {
+        if (index < 0) {
           return true;
-        }
-        else {
+        } else {
           idToDelete.splice(index, 1);
           nDeleted++;
           return false;
         }
       })
-    console.log('Deleted ', nDeleted, ' items')
     // update pagination
     this.pagination.setMaxIndex(this.users.length - 1);
   }

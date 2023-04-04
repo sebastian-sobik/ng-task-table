@@ -6,8 +6,10 @@ $clr-font-primary: #6C818D;
 
 // Icon
 $clr-icon: #9D9FA0;
+$clr-bg-trash: #ffcad4;
 
-// Table
+
+  // Table
 
   // --Header
   $clr-font-header: $clr-light-grey;
@@ -17,20 +19,16 @@ $clr-icon: #9D9FA0;
   $clr-row-selected-bg: #dee8eb;
   $clr-row-font: $clr-font-primary;
 
-  // --Pagination
-  $clr-pagination-bg: #FBFCFC;
-
   // --Menu
   $clr-menu-hover-bg: #94A2A43F;
   $clr-menu-btn: #D9D9D9;
   $clr-menu-hover-btn: #868686;
 
+// Table controller
+$clr-btn-normal: #EEEEEE;
+
 // Pagination
   $clr-pagination-font: #5F5F5F;
   $clr-pagination-bg: #F6F5F5;
 
-  // --Buttons
-  $clr-btn-normal: #EEEEEE;
-
-  // --Controller
-
+// Deleting

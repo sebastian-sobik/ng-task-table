@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {_Range} from "../../range.model";
-import {PaginationService} from "../../pagination.service";
 import {map, Subscription} from "rxjs";
+import {_Range} from "../../../range.model";
+import {PaginationService} from "../../../pagination.service";
 
 @Component({
-  selector: 'app-table-controller',
-  templateUrl: './table-controller.component.html',
-  styleUrls: ['./table-controller.component.scss']
+  selector: 'app-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.scss']
 })
-export class TableControllerComponent implements OnInit, OnDestroy {
+export class PaginationComponent implements OnInit, OnDestroy{
   rangeSubscription: Subscription | undefined;
   range: _Range | undefined;
 
@@ -42,9 +42,5 @@ export class TableControllerComponent implements OnInit, OnDestroy {
 
   onIncreaseRange() {
     this.pagination.goForward()
-  }
-
-  __test__() {
-
   }
 }

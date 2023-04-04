@@ -11,12 +11,15 @@ import { ViewsComponent } from './views/views.component';
 import { Page404Component } from './page404/page404.component';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import { TableControllerComponent } from './main/table-controller/table-controller.component';
 import {registerLocaleData} from "@angular/common";
 import localePl from '@angular/common/locales/pl';
 import localeEn from '@angular/common/locales/en';
 import { RowComponent } from './main/table/row/row.component';
 import { TableComponent } from './main/table/table.component';
+import { PaginationComponent } from './main/table-controller/pagination/pagination.component';
+import { DeletingComponent } from './main/table-controller/deleting/deleting.component';
+import { EditingComponent } from './main/table-controller/editing/editing.component';
+import { NewComponent } from './main/table-controller/new/new.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -32,9 +35,12 @@ registerLocaleData(localeEn);
     HeaderComponent,
     ViewsComponent,
     Page404Component,
-    TableControllerComponent,
     RowComponent,
     TableComponent,
+    PaginationComponent,
+    DeletingComponent,
+    EditingComponent,
+    NewComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,15 +2,23 @@
 @use "../1-abstract/colors" as *;
 @use "../1-abstract/variables" as *;
 
-app-table-controller {
-  @include flex(space-between, null, row);
+.table-controller,
+app-pagination,
+app-deleting,
+app-editing,
+app-new
+{
+  @include flex(space-between, center, row);
   max-width: 750px;
+  height: 85px;
   width: 100%;
   padding: 20px 40px;
   border-radius: 1rem;
 
   color: $clr-pagination-font;
   background-color: $clr-pagination-bg;
+  font-family: $font-family-default;
+  font-weight: $font-weight-medium;
 
   .hidden {
     visibility: hidden;
@@ -31,12 +39,20 @@ app-table-controller {
       font-size: 20px;
     }
   }
+}
 
+app-pagination {
   .pagination {
     @include flex(space-between, center, row);
     width: 140px;
-    font-family: $font-family-default;
-    font-weight: $font-weight-medium;
   }
+}
 
+app-deleting {
+  .btn-side:hover:has( >.bi-trash ) {
+    background-color: $clr-bg-trash;
+    .bi-trash {
+      color: black;
+    }
+  }
 }
