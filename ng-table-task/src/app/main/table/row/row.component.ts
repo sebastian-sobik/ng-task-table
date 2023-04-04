@@ -7,15 +7,18 @@ import {User} from "../../../user.model";
   templateUrl: './row.component.html',
   styleUrls: ['./row.component.scss']
 })
-export class RowComponent implements OnInit{
+export class RowComponent implements OnInit {
   @Input() user!: User;
+  @Output() rowSelected: EventEmitter<number> = new EventEmitter<number>();
+  @Output() rowDiscarded: EventEmitter<number> = new EventEmitter<number>();
   menuClasses: Record<string, boolean> = {}
   checkboxClasses: Record<string, boolean> = {}
   rowClasses: Record<string, boolean> = {}
   selected = false;
   toggled = false;
 
-  constructor(public translateService: TranslateService) { }
+  constructor(public translateService: TranslateService) {
+  }
 
   ngOnInit() {
     this.setCheckboxClasses();
@@ -25,6 +28,13 @@ export class RowComponent implements OnInit{
 
   onSelect() {
     this.selected = !this.selected;
+
+    if (this.selected) {
+      this.rowSelected.emit(this.user.id);
+    } else {
+      this.rowDiscarded.emit(this.user.id);
+    }
+
     this.setCheckboxClasses();
     this.setRowClasses();
   }

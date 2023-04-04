@@ -16,7 +16,8 @@ export class TableControllerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.range = this.pagination.getRange();
+    const {from, to} = this.pagination.getRangeIndexes();
+    this.range = {from: from + 1, to: to + 1};
     this.rangeSubscription = this.pagination.rangeUpdated
       .pipe(map(range => {
         return {
@@ -44,6 +45,6 @@ export class TableControllerComponent implements OnInit, OnDestroy {
   }
 
   __test__() {
-    this.pagination.fakeChange()
+
   }
 }

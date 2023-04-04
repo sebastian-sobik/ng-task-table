@@ -21,10 +21,16 @@ export class PaginationService {
 
   setMaxIndex(maxIndex: number) {
     this.maxIndex = maxIndex;
+    // w zależności czy usunęliśmy czy dodaliśmy on zmienia range, żeby np. nie być poza maxIndex
+    // usunęliśmy z końca listy, wychodzimy poza listę
+    if(this.to > this.maxIndex) {
+      this.to = this.maxIndex;
+    }
+    this.rangeUpdated.next({from: this.from, to: this.to});
   }
 
-  getRange() {
-    return {from: this.from + 1, to: this.to + 1}
+  getRangeIndexes() {
+    return {from: this.from, to: this.to }
   }
 
   fakeChange() {

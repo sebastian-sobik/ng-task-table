@@ -13,6 +13,9 @@
     <app-row
       *ngFor="let userData of data"
       [user]="userData"
+      (rowSelected)="onRowSelected($event)"
+      (rowDiscarded)="onRowDiscarded($event)"
+
     ></app-row>
   </tbody>
 </table>
