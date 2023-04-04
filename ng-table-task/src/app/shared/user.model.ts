@@ -3,5 +3,5 @@ export interface User {
   name: string,
   age: number,
   birthDate: Date,
-  biography: string
+  biography? : string
 }

@@ -10,8 +10,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./deleting.component.scss']
 })
 export class DeletingComponent implements OnInit, OnDestroy {
-  selectedCountSubscription : Subscription | undefined;
-  selectedClearSubscription : Subscription | undefined;
+  usersCountSub: Subscription | undefined;
   count = 0;
 
   constructor(private selectedUsersService: SelectedUsersService,
@@ -20,30 +19,25 @@ export class DeletingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.selectedCountSubscription = this.selectedUsersService.selectedCountChanged$.subscribe(
-      usersCount => {
-          this.count = usersCount
-      }
-    )
-    this.selectedClearSubscription = this.selectedUsersService.selectionCleared$.subscribe(
-      () => {
-        this.router.navigate(["main"]);
+    this.usersCountSub = this.selectedUsersService.onCountChanged$.subscribe(
+      usersSelectedCount => {
+        if (usersSelectedCount <= 0) {
+          this.router.navigate(["main"]);
+        }
+        this.count = usersSelectedCount;
       }
     )
   }
 
   onDelete() {
     this.userDataService.removeSelectedUsers()
-    this.router.navigate(["main"]);
   }
 
   onCancel() {
     this.selectedUsersService.clear();
-    this.router.navigate(["main"]);
   }
 
   ngOnDestroy() {
-    this.selectedClearSubscription?.unsubscribe();
-    this.selectedCountSubscription?.unsubscribe();
+    this.usersCountSub?.unsubscribe();
   }
 }

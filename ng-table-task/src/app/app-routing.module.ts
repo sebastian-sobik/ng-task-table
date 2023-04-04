@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {Page404Component} from "./page404/page404.component";
 import {MainComponent} from "./main/main.component";
 import {ViewsComponent} from "./views/views.component";
-import {PaginationService} from "./pagination.service";
 import {DeletingComponent} from "./main/table-controller/deleting/deleting.component";
 import {EditingComponent} from "./main/table-controller/editing/editing.component";
 import {NewComponent} from "./main/table-controller/new/new.component";

@@ -11,9 +11,9 @@
   </thead>
   <tbody>
     <app-row
-      *ngFor="let userData of data"
-      [user]="userData"
-      (rowSelected)="onRowSelected($event)"
+      *ngFor="let user of data"
+      [user]="user"
+      (rowCheckboxed)="onRowSelected($event)"
       (rowDiscarded)="onRowDiscarded($event)"
     ></app-row>
   </tbody>

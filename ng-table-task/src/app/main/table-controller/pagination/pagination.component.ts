@@ -1,12 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {map, Subscription} from "rxjs";
-import {_Range} from "../../../range.model";
-import {PaginationService} from "../../../pagination.service";
+import {_Range} from "../../../shared/range.model";
+import {PaginationService} from "./pagination.service";
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit, OnDestroy{
   rangeSubscription: Subscription | undefined;
@@ -16,9 +15,8 @@ export class PaginationComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    const {from, to} = this.pagination.getRangeIndexes();
-    this.range = {from: from + 1, to: to + 1};
-    this.rangeSubscription = this.pagination.rangeUpdated
+    this.getInitRange();
+    this.rangeSubscription = this.pagination.onRangeUpdate
       .pipe(map(range => {
         return {
           from: (range.from + 1),
@@ -26,10 +24,13 @@ export class PaginationComponent implements OnInit, OnDestroy{
         }
       }))
       .subscribe(
-        range => {
-          this.range = range
-        }
+        range => this.range = range
       )
+  }
+
+  private getInitRange() {
+    const {from, to} = this.pagination.getRangeIndexes();
+    this.range = {from: from + 1, to: to + 1};
   }
 
   ngOnDestroy() {

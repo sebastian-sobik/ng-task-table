@@ -6,20 +6,20 @@ import {BehaviorSubject, Subject} from "rxjs";
 })
 export class SelectedUsersService {
   private selectedUsersId: number[] = [];
-  selectedCountChanged$: BehaviorSubject<number> = new BehaviorSubject<number>(this.selectedUsersId.length);
-  selectionCleared$: Subject<boolean> = new Subject<boolean>();
+  onCountChanged$: BehaviorSubject<number> = new BehaviorSubject<number>(this.selectedUsersId.length);
+  onCleared$: Subject<boolean> = new Subject<boolean>();
 
   addUserId(id: number) {
     this.selectedUsersId.push(id);
-    this.selectedCountChanged$.next(this.selectedUsersId.length)
+    this.onCountChanged$.next(this.selectedUsersId.length)
   }
 
   removeUserId(id: number) {
-    let index =this.selectedUsersId.indexOf(id);
+    let index = this.selectedUsersId.indexOf(id);
     this.selectedUsersId.splice(index, 1);
-    this.selectedCountChanged$.next(this.selectedUsersId.length)
+    this.onCountChanged$.next(this.selectedUsersId.length)
     if(this.selectedUsersId.length <= 0) {
-      this.selectionCleared$.next(true);
+      this.onCleared$.next(true);
     }
   }
 
@@ -29,6 +29,6 @@ export class SelectedUsersService {
 
   clear(){
     this.selectedUsersId = [];
-    this.selectionCleared$.next(true);
+    this.onCleared$.next(true);
   }
 }

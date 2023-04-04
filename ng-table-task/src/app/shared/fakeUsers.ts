@@ -93,7 +93,7 @@ let usersWithoutID = [
   }
 ];
 
-export let users : User[] = [...usersWithoutID, ...usersWithoutID, ...usersWithoutID, ...usersWithoutID, ...usersWithoutID].map((user, index) => {return {...user, id: index}});
+export let users : User[] = [...usersWithoutID,...usersWithoutID,...usersWithoutID,...usersWithoutID,...usersWithoutID].map((user, index) => {return {...user, id: index}});
 export let id = users[users.length - 1].id;
 
 

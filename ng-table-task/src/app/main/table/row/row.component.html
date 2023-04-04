@@ -1,20 +1,20 @@
-<tr [ngClass]="rowClasses">
+<tr [ngClass]="ngClasses['rowClass']">
   <td class="row-checkbox">
     <form>
       <label class="user-select" for="user-select">
-        <i class="bi bi-square" (click)="onSelect()" [ngClass]="checkboxClasses"></i>
+        <i class="bi bi-square" (click)="onSelect()" [ngClass]="ngClasses['checkboxClass']"></i>
       </label>
       <input type="checkbox" id="user-select">
           </form>
   </td>
-  <td class="cell cell-name">{{user.name}}</td>
+  <td class="cell cell-name">{{user.name + ' ' + user.id}}</td>
   <td class="cell cell-age">{{user.age}}</td>
   <td class="cell cell-birthDate">{{user.birthDate | date:"d MMMM, y":'':translateService.currentLang}}</td>
   <td class="cell cell-biography">{{user.biography}}</td>
   <td class="cell cell-menu">
     <span class="menu">
-      <i (click)="toggled = !toggled; setMenuClasses()" class="bi bi-three-dots-vertical"></i>
-      <span [ngClass]="menuClasses">
+      <i (click)="onMenuSelect()" class="bi bi-three-dots-vertical"></i>
+      <span [ngClass]="ngClasses['menuClass']">
         <button class="btn-menu" (click)="onEdit()" type="button">{{'edytuj' | translate}}</button>
         <button class="btn-menu" (click)="onDelete()" type="button">{{'usuń' | translate}}</button>
       </span>
