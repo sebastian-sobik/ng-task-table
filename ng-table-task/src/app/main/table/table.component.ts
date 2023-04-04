@@ -1,5 +1,4 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {users} from "../../fakeUsers";
 import {User} from "../../user.model";
 import {Subscription} from "rxjs";
 import {UserDataService} from "../../user-data.service";

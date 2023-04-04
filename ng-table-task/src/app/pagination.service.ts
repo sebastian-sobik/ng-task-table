@@ -61,7 +61,7 @@ export class PaginationService {
       this.to = this.step - 1;
     } else if (step > 0 && this.to + step > this.maxIndex) {
       if(this.to !== this.maxIndex) {
-        this.from = this.maxIndex - this.step - 1;
+        this.from = this.maxIndex - this.step + 1;
         this.to = this.maxIndex;
       }
     } else {
