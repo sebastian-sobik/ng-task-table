@@ -1,7 +1,7 @@
 <tr
   class="row"
   [class]="selected ? 'row-selected' : ''"
-  (click)="select($event)"
+  (click)="select(); $event.preventDefault()"
 >
   <td class="row-checkbox">
     <form>

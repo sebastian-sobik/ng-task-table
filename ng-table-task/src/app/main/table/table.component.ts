@@ -1,9 +1,9 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../../shared/user.model";
 import {Subscription} from "rxjs";
 import {UserDataService} from "../../user-data.service";
 import {SelectedUsersService} from "../../selected-users.service";
-import {ActivatedRouteSnapshot, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-table',
@@ -11,6 +11,7 @@ import {ActivatedRouteSnapshot, Router} from "@angular/router";
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit, OnDestroy {
+  subscription: Subscription | undefined;
   dataSubscription: Subscription | undefined
   countSubscription: Subscription | undefined
   data: User[] = []
@@ -32,21 +33,33 @@ export class TableComponent implements OnInit, OnDestroy {
     this.countSubscription = this.selectedUsers.onCountChanged$.subscribe(
       count => this.numSelectedUsers = count
     )
+    this.subscription = this.selectedUsers.onCleared$.subscribe(
+      () => {}
+    )
   }
 
-  onRowSelected($id: number) {
+  rowSelect($id: number) {
     if (this.numSelectedUsers === 0) {
       this.router.navigate(["main", "deleting"])
     }
     this.selectedUsers.addUserId($id)
   }
 
-  onRowDiscarded($id: number) {
+  rowDiscard($id: number) {
     this.selectedUsers.removeUserId($id);
+  }
+
+  rowDelete($user: User) {
+    this.userDataService.removeUser($user);
+  }
+
+  onEdit($event: User) {
+
   }
 
   ngOnDestroy() {
     this.dataSubscription?.unsubscribe();
+    this.countSubscription?.unsubscribe()
+    this.subscription?.unsubscribe();
   }
-
 }

@@ -1,19 +1,22 @@
 <table>
   <thead>
-    <tr class="header-row">
-      <th></th>
-      <th>{{'imię' | translate}}</th>
-      <th>{{'wiek' | translate}}</th>
-      <th>{{'data urodzenia' | translate}}</th>
-      <th>{{'życiorys' | translate}}</th>
-      <th></th>
-    </tr>
+  <tr class="header-row">
+    <th></th>
+    <th>{{'imię' | translate}}</th>
+    <th>{{'wiek' | translate}}</th>
+    <th>{{'data urodzenia' | translate}}</th>
+    <th>{{'życiorys' | translate}}</th>
+    <th></th>
+  </tr>
   </thead>
   <tbody>
-    <app-row *ngFor="let user of data"
-      [user]="user"
-      (rowCheckboxed)="onRowSelected($event)"
-      (rowDiscarded)="onRowDiscarded($event)"
-    ></app-row>
+  <app-row
+    *ngFor="let user of data"
+    [user]="user"
+    (onSelected)="rowSelect($event)"
+    (onDiscarded)="rowDiscard($event)"
+    (onDelete)="rowDelete($event)"
+    (onEdit)="onEdit($event)"
+  ></app-row>
   </tbody>
 </table>

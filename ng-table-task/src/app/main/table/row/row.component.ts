@@ -1,53 +1,38 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {User} from "../../../shared/user.model";
-import {Subscription} from "rxjs";
-import {SelectedUsersService} from "../../../selected-users.service";
-import {UserDataService} from "../../../user-data.service";
 
 @Component({
   selector: 'app-row',
   templateUrl: './row.component.html',
   styleUrls: ['./row.component.scss']
 })
-export class RowComponent implements OnInit, OnDestroy {
-  @Output() rowCheckboxed: EventEmitter<number> = new EventEmitter<number>();
-  @Output() rowDiscarded: EventEmitter<number> = new EventEmitter<number>();
+export class RowComponent {
+  @Output() onSelected: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onDiscarded: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onDelete: EventEmitter<User> = new EventEmitter<User>();
+  @Output() onEdit: EventEmitter<User> = new EventEmitter<User>();
   @Input() user!: User;
-  subscription: Subscription | undefined;
   selected = false;
   toggled = false;
 
-  constructor(public translateService: TranslateService,              // service for translating date
-              private selectedUsersService: SelectedUsersService,
-              private usersService: UserDataService) {
+  constructor(public translateService: TranslateService) {
   }
 
-  ngOnInit() {
-    this.subscription = this.selectedUsersService.onCleared$.subscribe(
-      () => (this.selected) ? this.select() : null
-    )
-  }
-
-  ngOnDestroy() {
-    this.subscription?.unsubscribe();
-  }
-
-  select($event? : Event) {
-    $event?.preventDefault();
+  select() {
     this.selected = !this.selected;
-
     if (this.selected) {
-      this.rowCheckboxed.emit(this.user.id);
+      this.onSelected.emit(this.user.id);
     } else {
-      this.rowDiscarded.emit(this.user.id);
+      this.onDiscarded.emit(this.user.id);
     }
   }
 
   edit() {
+    this.onEdit.emit(this.user)
   }
 
   delete() {
-    this.usersService.removeUser(this.user);
+    this.onDelete.emit(this.user)
   }
 }
