@@ -1,8 +1,8 @@
-<tr [ngClass]="ngClasses['rowClass']">
+<tr [ngClass]="ngClasses['rowClass']" (click)="onClicked($event)">
   <td class="row-checkbox">
     <form>
       <label class="user-select" for="user-select">
-        <i class="bi bi-square" (click)="onSelect()" [ngClass]="ngClasses['checkboxClass']"></i>
+        <i class="bi bi-square"  [ngClass]="ngClasses['checkboxClass']"></i>
       </label>
       <input type="checkbox" id="user-select">
           </form>

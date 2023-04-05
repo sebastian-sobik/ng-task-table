@@ -41,6 +41,11 @@ export class RowComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
+  onClicked($event : Event) {
+    $event.preventDefault();
+    this.onSelect();
+  }
+
   onSelect() {
     this.selected = !this.selected;
 
