@@ -7,7 +7,7 @@ import { id } from './shared/fakeUsers'
 export class IdService {
   private ID: number = id + 1;
 
-  get id(): number {
+  get newId(): number {
     return this.ID++;
   }
 }

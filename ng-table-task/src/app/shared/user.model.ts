@@ -5,3 +5,5 @@ export interface User {
   birthDate: Date,
   biography? : string
 }
+
+export interface UserWithoutID extends Omit<User, 'id'> {}

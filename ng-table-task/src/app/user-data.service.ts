@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {User} from "./shared/user.model";
+import {User, UserWithoutID} from "./shared/user.model";
 import {users} from './shared/fakeUsers';
 import {Subject} from "rxjs";
 import {PaginationService} from "./main/table-controller/pagination/pagination.service";
 import {SelectedUsersService} from "./selected-users.service";
+import {IdService} from "./id.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class UserDataService {
   private users: User[] = users;
 
   constructor(private pagination: PaginationService,
-              private selectedUsersService: SelectedUsersService) {
+              private selectedUsersService: SelectedUsersService,
+              private idService: IdService) {
     this.pagination.onRangeUpdate.subscribe(
       ({from, to}) => {
         this.usersUpdated$.next(this.users.slice(from, to + 1))
@@ -27,8 +29,9 @@ export class UserDataService {
     return this.users.slice(from, to + 1);
   }
 
-  addUser(user: User): void {
-    this.users.unshift(user);
+  addUser(user: UserWithoutID): void {
+    const userWithId = {...user, id: this.idService.newId}
+    this.users.unshift(userWithId);
     this.pagination.setMaxIndex(this.users.length - 1);
   }
 
