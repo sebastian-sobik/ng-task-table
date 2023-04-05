@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {User, UserWithoutID} from "./shared/user.model";
 import {users} from './shared/fakeUsers';
 import {Subject} from "rxjs";
-import {PaginationService} from "./main/table-controller/pagination/pagination.service";
+import {PaginationService} from "./shared/pagination.service";
 import {SelectedUsersService} from "./selected-users.service";
 import {IdService} from "./id.service";
 

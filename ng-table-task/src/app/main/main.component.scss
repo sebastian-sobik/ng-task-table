@@ -1,0 +1,20 @@
+@use "../styles/1-abstract/variables" as *;
+@use "../styles/1-abstract/mixins" as *;
+
+main {
+  @include flex(center,center,column);
+  flex-wrap: wrap;
+  align-content: center;
+  padding: $main-padding;
+  width: 100%;
+  gap: 40px;
+}
+
+app-table {
+  max-width: $table-max-width;
+  max-height: $table-max-height;
+  padding: $table-padding;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+}

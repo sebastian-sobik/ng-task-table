@@ -1,3 +1,131 @@
+@use "../../../styles/1-abstract/variables" as *;
+@use "../../../styles/1-abstract/colors" as *;
+@use "../../../styles/1-abstract/mixins" as *;
+
 .table-line {
   display: contents;
+}
+
+.row {
+  td {
+    padding: 8px 0;
+  }
+  transition: background-color 250ms ease-out;
+
+  input[type=checkbox] {
+    display: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $clr-row-hover-bg
+  }
+}
+
+.row-selected {
+  background-color: $clr-row-selected-bg;
+}
+
+
+.menu {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 100%;
+  transition: $transition-menu;
+
+  &:hover {
+    background-color: $clr-menu-hover-bg;
+  }
+
+  .bi-three-dots-vertical {
+    font-size: 16px;
+    padding: 5px;
+    color: black;
+  }
+
+  .menu-options {
+    visibility: hidden;
+    position: absolute;
+    left: 30px;
+    transition: $transition-menu-options;
+
+    &.visible {
+      left: 35px;
+      visibility: visible;
+    }
+  }
+
+
+  .btn-menu {
+    position: absolute;
+    padding: 0 5px;
+    font-size: $font-size-petit;
+    font-weight: $font-weight-normal;
+    color: $clr-font-primary;
+    border: 0.1px solid $clr-menu-btn;
+    border-radius: 0.4rem;
+
+    &:hover {
+      cursor: pointer;
+      color: #53626b;
+      border: 0.7px solid $clr-menu-hover-btn;
+    }
+
+    &:nth-of-type(1) {
+      top: -15px;
+    }
+
+    &:nth-of-type(2) {
+      top: 15px;
+    }
+  }
+}
+
+// Table column cell
+.cell {
+  max-width: 0;
+  font-family: $font-family-default;
+  letter-spacing: $font-letter-spacing-primary;
+  font-weight: $font-weight-medium;
+  color: $clr-font-primary;
+}
+
+// Setting column width
+.cell-name {
+  width: $column-width-name
+}
+
+.cell-birthDate {
+  width: $column-width-birthDate
+}
+
+.cell-age {
+  width: $column-width-age
+}
+
+.cell-biography {
+  width: $column-width-biography
+}
+
+.cell-checkbox {
+  width: $column-width-checkbox
+}
+
+.cell-menu {
+  width: $column-width-menu
+}
+
+// Styling specific column
+.cell-biography {
+  @include ellipsis;
+}
+
+.cell-menu {
+  text-align: right;
+  overflow: visible;
+}
+
+.cell-name {
+  text-transform: uppercase;
 }

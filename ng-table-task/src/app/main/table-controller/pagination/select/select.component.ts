@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {PaginationService, stepCount} from "../pagination.service";
+import {PaginationService, stepCount} from "../../../../shared/pagination.service";
 
 @Component({
   selector: 'app-form-select',

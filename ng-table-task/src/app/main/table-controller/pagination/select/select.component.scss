@@ -1,0 +1,9 @@
+@use "../../../../styles/1-abstract/variables" as *;
+@use "../../../../styles/1-abstract/colors" as *;
+
+form select{
+  border-radius: 0.4rem;
+  font-size: $font-size-small - 2px;
+  color: $clr-pagination-font;
+  border-color: $clr-light-grey;
+}

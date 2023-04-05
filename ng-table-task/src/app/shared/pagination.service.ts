@@ -1,7 +1,6 @@
-import {forwardRef, Inject, Injectable, OnDestroy, OnInit} from '@angular/core';
-import {UserDataService} from "../../../user-data.service";
-import {BehaviorSubject, Subject, Subscription} from "rxjs";
-import {_Range} from "../../../shared/range.model";
+import {Injectable} from '@angular/core';
+import {Subject} from "rxjs";
+import {_Range} from "./range.model";
 
 export type stepCount = 10 | 20 | 50;
 
