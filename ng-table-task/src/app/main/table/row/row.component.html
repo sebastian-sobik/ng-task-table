@@ -1,11 +1,15 @@
-<tr [ngClass]="ngClasses['rowClass']" (click)="onClicked($event)">
+<tr
+  class="row"
+  [class]="selected ? 'row-selected' : ''"
+  (click)="select($event)"
+>
   <td class="row-checkbox">
     <form>
       <label class="user-select" for="user-select">
-        <i class="bi bi-square"  [ngClass]="ngClasses['checkboxClass']"></i>
+        <i class="bi" [class]="selected ? 'bi-check-square-fill' : 'bi-square'"></i>
       </label>
       <input type="checkbox" id="user-select">
-          </form>
+    </form>
   </td>
   <td class="cell cell-name">{{user.name + ' ' + user.id}}</td>
   <td class="cell cell-age">{{user.age}}</td>
@@ -13,10 +17,10 @@
   <td class="cell cell-biography">{{user.biography}}</td>
   <td class="cell cell-menu">
     <span class="menu">
-      <i (click)="onMenuSelect()" class="bi bi-three-dots-vertical"></i>
-      <span [ngClass]="ngClasses['menuClass']">
-        <button class="btn-menu" (click)="onEdit()" type="button">{{'edytuj' | translate}}</button>
-        <button class="btn-menu" (click)="onDelete()" type="button">{{'usuń' | translate}}</button>
+      <i class="bi bi-three-dots-vertical" (click)="toggled = !toggled"></i>
+      <span class="menu-options" [class]="toggled ? 'visible' : ''">
+        <button class="btn-menu" (click)="edit(); toggled = false;" type="button">{{'edytuj' | translate}}</button>
+        <button class="btn-menu" (click)="delete(); toggled = false;" type="button">{{'usuń' | translate}}</button>
       </span>
     </span>
   </td>

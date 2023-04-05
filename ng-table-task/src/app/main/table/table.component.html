@@ -10,8 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <app-row
-      *ngFor="let user of data"
+    <app-row *ngFor="let user of data"
       [user]="user"
       (rowCheckboxed)="onRowSelected($event)"
       (rowDiscarded)="onRowDiscarded($event)"
