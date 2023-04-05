@@ -6,7 +6,7 @@ import {PaginationService} from "../../../shared/pagination.service";
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit, OnDestroy{
   rangeSubscription: Subscription | undefined;
