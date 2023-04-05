@@ -30,7 +30,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/app/styles/styles.scss"
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
