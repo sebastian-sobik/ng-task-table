@@ -1,5 +1,12 @@
 @use "../../styles/variables" as *;
 
+:host {
+  height: $header-height;
+  padding: 40px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
 
 .form-language {
   width: 90px;

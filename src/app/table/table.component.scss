@@ -1,0 +1,24 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+:host {
+  max-width: $table-max-width;
+  width: 100%;
+  @include flex(space-between,center,column);
+  padding: $table-padding;
+  gap: 40px;
+
+  @media (max-width: 800px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media (max-width: 380px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+router-outlet {
+  display: none;
+}
