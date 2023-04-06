@@ -54,7 +54,7 @@ export class TableDataComponent implements OnInit, OnDestroy {
   }
 
   onEdit($event: User) {
-
+    console.log($event);
   }
 
   ngOnDestroy() {
