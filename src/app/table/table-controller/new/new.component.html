@@ -1,23 +1,29 @@
-<button class="btn-side" type="button" (click)="onSubmit()">
-  <i class="bi bi-plus"></i>
-</button>
-<form class="form-new" [formGroup]="form">
-  <p>
-    <input
-      formControlName="name"
-      placeholder="name"
-      type="text">
-    <input
-      formControlName="age"
-      placeholder="age"
-      type="number">
-    <input
-      formControlName="birthDate"
-      type="date">
-  </p>
-  <p>
+<div [class.closed]="hide">
+  <button class="btn-side btn-hide" (click)="hide = !hide" type="button">
+    <i class="bi bi-x"></i>
+  </button>
+  <form
+    class="form-new"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+  >
+    <p class="user-required-info">
+      <input
+        formControlName="name"
+        placeholder="name"
+        type="text">
+      <input
+        formControlName="age"
+        placeholder="age"
+        type="number">
+      <input
+        formControlName="birthDate"
+        type="date">
+    </p>
     <textarea
       formControlName="biography"
       placeholder="(optional) insert biography"></textarea>
-  </p>
-</form>
+    <button class="btn-submit" type="button">Add user</button>
+  </form>
+
+</div>

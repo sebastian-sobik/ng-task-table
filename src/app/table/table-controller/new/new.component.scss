@@ -1,0 +1,93 @@
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/variables" as *;
+
+:host {
+  position: relative;
+  background-color: transparent;
+  height: 85px;
+  width: 100%;
+  max-width: 750px;
+}
+
+div {
+  height: 350px;
+  width: 100%;
+  position: absolute;
+  padding: 35px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+
+  display: flex;
+  transition: height ease-in-out 400ms;
+}
+
+div.closed {
+  height: 85px;
+}
+
+.btn-hide {
+  flex-shrink: 0;
+}
+
+form {
+  width: 100%;
+  padding: 0 20px;
+  font-family: $font-family-second;
+  font-size: $font-size-medium;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap:20px;
+
+
+  input,
+  textarea{
+    font-size: inherit;
+    font-family: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
+
+  .user-required-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    input {
+      padding: 3px 5px;
+    }
+
+    input[formControlName="name"] {
+    }
+
+    input[formControlName="age"] {
+      width: 70px;
+      text-align: center;
+    }
+
+    input[formControlName="birthDate"] {
+      min-width: 20px;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    padding: 10px;
+    flex-grow: 5;
+    font-size: $font-size-small;
+  }
+
+  .btn-submit {
+    padding: 5px 10px;
+    border: 1px solid grey;
+    border-radius: 0.3rem;
+  }
+
+}

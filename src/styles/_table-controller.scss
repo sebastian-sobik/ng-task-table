@@ -7,13 +7,6 @@ app-deleting,
 app-editing,
 app-new
 {
-  @include flex(space-between, center, row);
-  max-width: 750px;
-  height: 85px;
-  width: 100%;
-  padding: 20px 40px;
-  border-radius: 1rem;
-
   color: $clr-pagination-font;
   background-color: $clr-pagination-bg;
   font-family: $font-family-default;

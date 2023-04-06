@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {UserDataService} from "../../../user-data.service";
 import {UserWithoutID} from "../../../shared/user.model";
@@ -9,6 +9,7 @@ import {UserWithoutID} from "../../../shared/user.model";
   styleUrls: ['./new.component.scss']
 })
 export class NewComponent {
+  hide = false;
 
   form = this.fb.group({
       'name' : ['', Validators.required],
