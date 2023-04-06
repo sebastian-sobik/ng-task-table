@@ -6,11 +6,11 @@ import {SelectedUsersService} from "../../selected-users.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  selector: 'app-table-data',
+  templateUrl: './table-data.component.html',
+  styleUrls: ['./table-data.component.scss']
 })
-export class TableComponent implements OnInit, OnDestroy {
+export class TableDataComponent implements OnInit, OnDestroy {
   subscription: Subscription | undefined;
   dataSubscription: Subscription | undefined
   countSubscription: Subscription | undefined
