@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {User} from "../../../shared/user.model";
+import {SelectedUsersService} from "../../../selected-users.service";
 
 @Component({
   selector: 'app-row',
@@ -16,8 +17,13 @@ export class RowComponent {
   selected = false;
   toggled = false;
 
-  constructor(public translateService: TranslateService) {
+  constructor(public translateService: TranslateService,
+              private selectedUsersService: SelectedUsersService) {
+    this.selectedUsersService.onCleared$.subscribe(
+      () => this.selected = false
+    )
   }
+
 
   select() {
     this.selected = !this.selected;

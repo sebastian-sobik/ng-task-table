@@ -30,5 +30,6 @@ export class SelectedUsersService {
   clear(){
     this.selectedUsersId = [];
     this.onCleared$.next(true);
+    this.onCountChanged$.next(this.selectedUsersId.length);
   }
 }
