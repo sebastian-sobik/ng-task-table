@@ -1,9 +1,9 @@
-<div [class.closed]="hide">
-  <button class="btn-side btn-hide hide-at-520" (click)="onCancel()" type="button">
+<div class="editor" [class.closed]="closed">
+  <button class="btn-side btn-close hide-at-520" (click)="onCancel()" type="button">
     <i class="bi bi-x"></i>
   </button>
   <form
-    class="form-new"
+    class="user-form"
     (ngSubmit)="onSubmit()"
     [formGroup]="form"
   >
@@ -24,7 +24,7 @@
       formControlName="biography"
       placeholder="(optional) insert biography"></textarea>
     <p class="bottom">
-      <button class="btn-side btn-hide hide-from-520" (click)="onCancel()" type="button">
+      <button class="btn-side btn-close hide-from-520" (click)="onCancel()" type="button">
         <i class="bi bi-x"></i>
       </button>
       <button class="btn-submit " >Add user</button>

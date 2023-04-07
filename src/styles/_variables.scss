@@ -42,4 +42,16 @@ $column-width-menu: 5%;
 $transition-menu: background-color 250ms ease-out;
 $transition-menu-options: left 150ms ease-out;
 
+// Form
+$form-input-padding: 3px 5px;
 
+// Controller
+$controller-height: 85px;
+$controller-max-width: 750px;
+
+// User editor
+$editor-height: 350px;
+$editor-padding: 35px;
+$editor-padding-sd: 35px 25px;
+$editor-transition: all, ease-in-out 400ms;
+$btn-rotate-transition: transform 300ms ease-in-out;

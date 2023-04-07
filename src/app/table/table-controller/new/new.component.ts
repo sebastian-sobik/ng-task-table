@@ -10,35 +10,36 @@ import {Router} from "@angular/router";
   styleUrls: ['./new.component.scss']
 })
 export class NewComponent implements AfterViewInit {
-  hide = true;
+  closed = true;
 
   form = this.fb.group({
-      'name' : ['', Validators.required],
-      'age' : ['', Validators.required], //validate it as num>0
-      'birthDate' : ['', Validators.required],
-      'biography' : ''
+      'name': ['', Validators.required],
+      'age': ['', Validators.required], //validate it as num>0
+      'birthDate': ['', Validators.required],
+      'biography': ''
     }
   )
 
   constructor(private fb: FormBuilder,
               private usersDataService: UserDataService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   ngAfterViewInit() {
-    this.hide = false;
+    this.closed = false;
   }
 
   onSubmit() {
-    if(this.form.valid) {
+    if (this.form.valid) {
       // @ts-ignore
-      const newUser : UserWithoutID = {...this.form.value};
+      const newUser: UserWithoutID = {...this.form.value};
       this.usersDataService.addUser(newUser);
       this.form.reset();
     }
   }
 
   onCancel() {
-    this.hide = !this.hide;
+    this.closed = !this.closed;
     setTimeout(
       () => {
         this.router.navigate(['main'])
