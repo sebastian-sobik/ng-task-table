@@ -61,6 +61,7 @@
   .menu-options {
     visibility: hidden;
     position: absolute;
+    z-index: 999;
     left: 30px;
     transition: $transition-menu-options;
 

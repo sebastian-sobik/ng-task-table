@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {map, Subscription} from "rxjs";
 import {_Range} from "../../../shared/range.model";
 import {PaginationService} from "../../../shared/pagination.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-pagination',
@@ -12,7 +13,8 @@ export class PaginationComponent implements OnInit, OnDestroy{
   rangeSubscription: Subscription | undefined;
   range: _Range | undefined;
 
-  constructor(private pagination: PaginationService) {
+  constructor(private pagination: PaginationService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -44,5 +46,9 @@ export class PaginationComponent implements OnInit, OnDestroy{
 
   onIncreaseRange() {
     this.pagination.goForward()
+  }
+
+  onEditor() {
+    this.router.navigate(['main', 'new'])
   }
 }

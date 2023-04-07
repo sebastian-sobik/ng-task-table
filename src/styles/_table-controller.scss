@@ -3,6 +3,11 @@
 @use "variables" as *;
 
 app-pagination,
+app-deleting {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+app-pagination,
 app-deleting,
 app-editing,
 app-new
@@ -11,6 +16,7 @@ app-new
   background-color: $clr-pagination-bg;
   font-family: $font-family-default;
   font-weight: $font-weight-medium;
+
 
   .hidden {
     visibility: hidden;

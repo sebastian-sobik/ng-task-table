@@ -1,10 +1,12 @@
 @use "../../../../styles/mixins" as *;
 @use "../../../../styles/variables" as *;
+@use "../../../../styles/colors" as *;
 
 :host {
   position: relative;
   background-color: transparent;
   height: 85px;
+  flex-shrink: 0;
   width: 100%;
   max-width: 750px;
 }
@@ -24,15 +26,46 @@ div {
   border-radius: 1rem;
 
   display: flex;
-  transition: height ease-in-out 400ms;
+  transition: all, ease-in-out 400ms;
+
+  @media (max-width: 520px) {
+    padding: 35px 10px;
+  }
 }
 
 div.closed {
   height: 85px;
+  background-color: $clr-pagination-bg;
+  padding: 20px 40px;
+
+  .btn-hide {
+    transform: rotate(135deg);
+  }
+
+  form {
+    opacity: 0;
+    border: none;
+  }
 }
 
 .btn-hide {
   flex-shrink: 0;
+  transition: transform 300ms ease-in-out;
+
+  @media  (max-width: 520px) {
+    &.hide-at-520 {
+      display: none;
+      background-color: red;
+    }
+  }
+
+  @media (min-width: 520px) {
+    &.hide-from-520 {
+      display: none;
+      background-color: red;
+    }
+  }
+
 }
 
 form {
@@ -46,6 +79,7 @@ form {
   justify-content: space-between;
   gap:20px;
 
+  transition: opacity 200ms ease-in;
 
   input,
   textarea{
@@ -55,21 +89,40 @@ form {
     border-radius: 5px;
   }
 
+  input.ng-touched.ng-invalid {
+    border: 1px solid pink;
+  }
+
   .user-required-info {
     display: flex;
     justify-content: space-between;
     gap: 10px;
 
+    @media (max-width: 520px) {
+      flex-wrap: wrap;
+    }
+
     input {
       padding: 3px 5px;
+      width: 100%;
+
+      @media (max-width: 520px) {
+        text-align: center;
+        min-width: 100%;
+      }
     }
 
     input[formControlName="name"] {
+
     }
 
     input[formControlName="age"] {
-      width: 70px;
+      max-width: 70px;
       text-align: center;
+
+      @media (max-width: 520px) {
+        max-width: none;
+      }
     }
 
     input[formControlName="birthDate"] {
@@ -85,9 +138,18 @@ form {
   }
 
   .btn-submit {
+    height: 50px;
     padding: 5px 10px;
     border: 1px solid grey;
     border-radius: 0.3rem;
   }
 
+  .bottom {
+    display: flex;
+    gap: 10px;
+
+    .btn-submit {
+      flex-grow: 1;
+    }
+  }
 }

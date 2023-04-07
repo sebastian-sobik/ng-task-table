@@ -2,15 +2,24 @@
 @use "../../styles/mixins" as *;
 
 :host {
+  @include flex(space-between,center,column);
+  gap: 40px;
+
   max-width: $table-max-width;
   width: 100%;
-  @include flex(space-between,center,column);
   padding: $table-padding;
-  gap: 40px;
+
+  @media (max-width: 1100px) {
+    padding: 20px;
+  }
 
   @media (max-width: 800px) {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  @media (max-width: 540px) {
+    padding: 10px;
   }
 
   @media (max-width: 380px) {
