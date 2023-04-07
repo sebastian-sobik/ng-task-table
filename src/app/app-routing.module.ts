@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {Page404Component} from "./page404/page404.component";
 import {TableComponent} from "./table/table.component";
 import {ViewsComponent} from "./views/views.component";
 import {DeletingComponent} from "./table/table-controller/deleting/deleting.component";
-import {EditingComponent} from "./table/table-controller/editing/editing.component";
 import {NewComponent} from "./table/table-controller/new/new.component";
 import {PaginationComponent} from "./table/table-controller/pagination/pagination.component";
 
@@ -13,7 +12,6 @@ const routes: Routes = [
   {path: 'main', component: TableComponent, children: [
       {path: '', component: PaginationComponent},
       {path: 'deleting', component: DeletingComponent},
-      {path: 'editing:id', component: EditingComponent},
       {path: 'new', component: NewComponent}
     ]},
   {path: 'views', component: ViewsComponent},

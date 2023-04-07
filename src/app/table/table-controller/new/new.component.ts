@@ -1,16 +1,26 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewChecked, Component, OnDestroy} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {UserDataService} from "../../../user-data.service";
-import {UserWithoutID} from "../../../shared/user.model";
-import {Router} from "@angular/router";
+import {User, UserWithoutID} from "../../../shared/user.model";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
   styleUrls: ['./new.component.scss']
 })
-export class NewComponent implements AfterViewInit {
+export class NewComponent implements AfterViewChecked, OnDestroy {
+  subscription : Subscription | undefined;
   closed = true;
+  isEditing = false;
+  user : User = {
+    name: '',
+    age: 0,
+    birthDate: new Date(),
+    biography: '',
+    id: -1
+  };
 
   form = this.fb.group({
       'name': ['', Validators.required],
@@ -22,18 +32,42 @@ export class NewComponent implements AfterViewInit {
 
   constructor(private fb: FormBuilder,
               private usersDataService: UserDataService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
+    this.subscription = this.route.queryParams
+      .subscribe(
+        queryParams => {
+          console.log(this.route)
+          this.isEditing = queryParams['isEditing'] === "true"
+          if(this.isEditing) {
+            const id = queryParams['userID'];
+            if(id) {
+              const user = usersDataService.getUser(id);
+              if(user) {
+                this.user = user;
+              }
+            }
+          }
+        }
+      )
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
     this.closed = false;
   }
 
   onSubmit() {
     if (this.form.valid) {
       // @ts-ignore
-      const newUser: UserWithoutID = {...this.form.value};
-      this.usersDataService.addUser(newUser);
+      const newUser: UserWithoutID = this.user;
+
+      if(this.isEditing) {
+        this.usersDataService.updateUser(this.user.id, newUser)
+        this.router.navigate(['main'])
+      }
+      else {
+        this.usersDataService.addUser(newUser);
+      }
       this.form.reset();
     }
   }
@@ -46,4 +80,9 @@ export class NewComponent implements AfterViewInit {
       }, 400
     )
   }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe()
+  }
+
 }

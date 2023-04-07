@@ -53,8 +53,8 @@ export class TableDataComponent implements OnInit, OnDestroy {
     this.userDataService.removeUser($user);
   }
 
-  onEdit($event: User) {
-    console.log($event);
+  onEdit($id: number) {
+    this.router.navigate(["main", "new"], {queryParams: {isEditing: "true", userID: $id}})
   }
 
   ngOnDestroy() {

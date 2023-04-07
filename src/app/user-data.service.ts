@@ -24,6 +24,13 @@ export class UserDataService {
     this.pagination.setMaxIndex(this.users.length - 1);
   }
 
+  getUser(id: number) : User  {
+    const user = this.users.find(
+      user => user.id === +id
+    );
+    return {...user!};
+  }
+
   getUsers(): User[] {
     const {from, to} = this.pagination.getRangeIndexes();
     return this.users.slice(from, to + 1);
@@ -55,6 +62,19 @@ export class UserDataService {
         }
       })
     // update pagination
+    this.pagination.setMaxIndex(this.users.length - 1);
+  }
+
+  updateUser(id: number, newUser: UserWithoutID) {
+    let index = this.users.findIndex(
+      user => user.id === id
+    )
+    if(index >= 0) {
+      this.users[index] = {...newUser, id: id};
+    }
+    else {
+      throw Error('trying to update not existing user')
+    }
     this.pagination.setMaxIndex(this.users.length - 1);
   }
 }

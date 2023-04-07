@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent implements OnInit, OnDestroy{
+export class PaginationComponent implements OnInit, OnDestroy {
   rangeSubscription: Subscription | undefined;
   range: _Range | undefined;
 
@@ -49,6 +49,11 @@ export class PaginationComponent implements OnInit, OnDestroy{
   }
 
   onEditor() {
-    this.router.navigate(['main', 'new'])
+    this.router.navigate(
+      ['main', 'new'],
+      {
+        queryParams: {isEditing: "false"}
+      }
+    )
   }
 }

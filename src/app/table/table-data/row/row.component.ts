@@ -12,7 +12,7 @@ export class RowComponent {
   @Output() onSelected: EventEmitter<number> = new EventEmitter<number>();
   @Output() onDiscarded: EventEmitter<number> = new EventEmitter<number>();
   @Output() onDelete: EventEmitter<User> = new EventEmitter<User>();
-  @Output() onEdit: EventEmitter<User> = new EventEmitter<User>();
+  @Output() onEdit: EventEmitter<number> = new EventEmitter<number>();
   @Input() user!: User;
   selected = false;
   toggled = false;
@@ -35,7 +35,7 @@ export class RowComponent {
   }
 
   edit() {
-    this.onEdit.emit(this.user)
+    this.onEdit.emit(this.user.id)
   }
 
   delete() {
