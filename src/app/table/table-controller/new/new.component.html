@@ -17,6 +17,8 @@
         formControlName="age"
         placeholder="age"
         type="number"
+        min="0"
+        step="1"
       >
 
       <input
@@ -27,6 +29,7 @@
     <textarea
       formControlName="biography"
       placeholder="(optional) insert biography"
+      maxlength="250"
     ></textarea>
     <p class="bottom">
       <button class="btn-side btn-close hide-from-520" (click)="onCancel()" type="button">

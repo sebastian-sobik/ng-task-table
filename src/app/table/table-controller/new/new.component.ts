@@ -18,9 +18,9 @@ export class NewComponent implements AfterViewChecked, OnDestroy {
 
   form = this.fb.group({
       'name': ['', Validators.required],
-      'age': [0, Validators.required], //validate it as num>0
+      'age': [0, [Validators.required, Validators.pattern("^[0-9]*$")]], //validate it as num>0
       'birthDate': [new Date().toISOString().slice(0, 10) as string, [Validators.required, Validators.pattern(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/)]],
-      'biography': ''
+      'biography': ['', [Validators.maxLength(250)]]
     }
   )
 
