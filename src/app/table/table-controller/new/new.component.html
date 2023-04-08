@@ -12,31 +12,27 @@
         formControlName="name"
         placeholder="name"
         type="text"
-        [ngModel] = "user.name"
       >
       <input
         formControlName="age"
         placeholder="age"
         type="number"
-        [ngModel] = "user.age"
       >
 
       <input
         formControlName="birthDate"
         type="date"
-        [ngModel] ="user.birthDate | date:'yyyy-MM-dd'"
-        (ngModelChange)="user.birthDate = $event">
+      >
     </p>
     <textarea
       formControlName="biography"
       placeholder="(optional) insert biography"
-      [ngModel] = "user.biography"
     ></textarea>
     <p class="bottom">
       <button class="btn-side btn-close hide-from-520" (click)="onCancel()" type="button">
         <i class="bi bi-x"></i>
       </button>
-      <button class="btn-submit " >Add user</button>
+      <button class="btn-submit " >{{isEditing ? 'Submit'  : 'Add user'}}</button>
     </p>
   </form>
 

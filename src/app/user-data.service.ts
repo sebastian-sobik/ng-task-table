@@ -24,11 +24,14 @@ export class UserDataService {
     this.pagination.setMaxIndex(this.users.length - 1);
   }
 
-  getUser(id: number) : User  {
-    const user = this.users.find(
+  getUser(id: number): User {
+    const user: User | undefined = this.users.find(
       user => user.id === +id
     );
-    return {...user!};
+    if (user) {
+      return user;
+    }
+    throw Error("Trying to get user with not existing id")
   }
 
   getUsers(): User[] {
@@ -49,32 +52,34 @@ export class UserDataService {
   }
 
   removeSelectedUsers(): void {
-    let idToDelete : number[] = this.selectedUsersService.getSelectedId();
-    this.selectedUsersService.clear();
+    let idToDelete: number[] = this.selectedUsersService.getSelectedId();
     this.users = this.users.filter(
-      user => {
-        const index = idToDelete.indexOf(user.id);
-        if (index < 0) {
-          return true;
-        } else {
-          idToDelete.splice(index, 1);
-          return false;
-        }
-      })
-    // update pagination
+      user => this.filterUsersByID(user, idToDelete)
+    )
+    this.selectedUsersService.clear();
     this.pagination.setMaxIndex(this.users.length - 1);
+  }
+
+  private filterUsersByID(user: User, idToDelete: number[]) {
+    const index = idToDelete.indexOf(user.id);
+    if (index < 0) {
+      return true;
+    } else {
+      idToDelete.splice(index, 1);
+      return false;
+    }
   }
 
   updateUser(id: number, newUser: UserWithoutID) {
     let index = this.users.findIndex(
-      user => user.id === id
+      user => user.id === +id
     )
-    if(index >= 0) {
-      this.users[index] = {...newUser, id: id};
-    }
-    else {
+    if (index >= 0) {
+      this.users[index] = {...newUser, id: +id};
+    } else {
       throw Error('trying to update not existing user')
     }
-    this.pagination.setMaxIndex(this.users.length - 1);
+    const {from, to} = this.pagination.getRangeIndexes();
+    this.usersUpdated$.next(this.users.slice(from, to + 1));
   }
 }

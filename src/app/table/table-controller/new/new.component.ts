@@ -1,7 +1,7 @@
 import {AfterViewChecked, Component, OnDestroy} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {NonNullableFormBuilder, Validators} from "@angular/forms";
 import {UserDataService} from "../../../user-data.service";
-import {User, UserWithoutID} from "../../../shared/user.model";
+import {UserWithoutID} from "../../../shared/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 
@@ -11,45 +11,45 @@ import {Subscription} from "rxjs";
   styleUrls: ['./new.component.scss']
 })
 export class NewComponent implements AfterViewChecked, OnDestroy {
-  subscription : Subscription | undefined;
+  subscription: Subscription | undefined;
   closed = true;
   isEditing = false;
-  user : User = {
-    name: '',
-    age: 0,
-    birthDate: new Date(),
-    biography: '',
-    id: -1
-  };
+  editingID: number = -1;
 
   form = this.fb.group({
       'name': ['', Validators.required],
-      'age': ['', Validators.required], //validate it as num>0
-      'birthDate': ['', Validators.required],
+      'age': [0, Validators.required], //validate it as num>0
+      'birthDate': [new Date().toISOString().slice(0, 10) as string, [Validators.required, Validators.pattern(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/)]],
       'biography': ''
     }
   )
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: NonNullableFormBuilder,
               private usersDataService: UserDataService,
               private router: Router,
               private route: ActivatedRoute) {
     this.subscription = this.route.queryParams
       .subscribe(
-        queryParams => {
-          console.log(this.route)
-          this.isEditing = queryParams['isEditing'] === "true"
-          if(this.isEditing) {
-            const id = queryParams['userID'];
-            if(id) {
-              const user = usersDataService.getUser(id);
-              if(user) {
-                this.user = user;
-              }
-            }
+        qParams => {
+          const isEditing = qParams['isEditing'] === "true"
+          const id = qParams['userID'];
+          if (isEditing && id) {
+            this.initEditingForm(id);
           }
         }
       )
+  }
+
+  private initEditingForm(id: number) {
+    this.isEditing = true;
+    this.editingID = id;
+    const user = this.usersDataService.getUser(id);
+    this.form.setValue({
+      'name': user.name,
+      'age': user.age,
+      'birthDate': user.birthDate.toISOString().slice(0, 10) as string,
+      'biography': user.biography ?? ''
+    })
   }
 
   ngAfterViewChecked() {
@@ -59,13 +59,11 @@ export class NewComponent implements AfterViewChecked, OnDestroy {
   onSubmit() {
     if (this.form.valid) {
       // @ts-ignore
-      const newUser: UserWithoutID = this.user;
-
-      if(this.isEditing) {
-        this.usersDataService.updateUser(this.user.id, newUser)
+      const newUser: UserWithoutID = {...this.form.value, birthDate: new Date(this.form.value.birthDate)};
+      if (this.isEditing) {
+        this.usersDataService.updateUser(this.editingID, newUser)
         this.router.navigate(['main'])
-      }
-      else {
+      } else {
         this.usersDataService.addUser(newUser);
       }
       this.form.reset();
