@@ -10,7 +10,7 @@
     <p class="user-required-info">
       <input
         formControlName="name"
-        placeholder="name"
+        placeholder='{{"namePlaceholder" | translate}}'
         type="text"
       >
       <input
@@ -28,14 +28,14 @@
     </p>
     <textarea
       formControlName="biography"
-      placeholder="(optional) insert biography"
+      placeholder='{{"biographyPlaceholder" | translate}}'
       maxlength="250"
     ></textarea>
     <p class="bottom">
       <button class="btn-side btn-close hide-from-520" (click)="onCancel()" type="button">
         <i class="bi bi-x"></i>
       </button>
-      <button class="btn-submit " >{{isEditing ? 'Submit'  : 'Add user'}}</button>
+      <button class="btn-submit " >{{(isEditing ? 'zmień'  : 'dodaj') | translate}}</button>
     </p>
   </form>
 

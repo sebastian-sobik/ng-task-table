@@ -6,5 +6,12 @@
   "imię": "imie",
   "wiek": "wiek",
   "data urodzenia": "data urodzenia",
-  "życiorys": "życiorys"
+  "życiorys": "życiorys",
+  "do": "do",
+  "strona główna": "main",
+  "widoki": "widoki",
+  "namePlaceholder" : "imie",
+  "biographyPlaceholder": "(opcjonalne) Uzupełnij życiorys.",
+  "zmień": "Zmień",
+  "dodaj": "Dodaj użytkownika"
 }
