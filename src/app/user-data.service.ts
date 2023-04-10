@@ -39,6 +39,10 @@ export class UserDataService {
     return this.users.slice(from, to + 1);
   }
 
+  getAllUsers(): User[] {
+    return this.users.slice();
+  }
+
   addUser(user: UserWithoutID): void {
     const userWithId = {...user, id: this.idService.newId}
     this.users.unshift(userWithId);

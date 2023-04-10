@@ -14,6 +14,6 @@ export class ViewsComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.data = this.usersService.getUsers();
+    this.data = this.usersService.getAllUsers();
   }
 }
