@@ -17,10 +17,10 @@
   <td class="cell cell-biography">{{user.biography}}</td>
   <td class="cell cell-menu">
     <span class="menu">
-      <i class="bi bi-three-dots-vertical" (click)="toggled = !toggled"></i>
+      <i class="bi bi-three-dots-vertical" (click)="toggled = !toggled; $event.stopPropagation()"></i>
       <span class="menu-options" [class]="toggled ? 'visible' : ''">
-        <button class="btn-menu" (click)="edit(); toggled = false;" type="button">{{'edytuj' | translate}}</button>
-        <button class="btn-menu" (click)="delete(); toggled = false;" type="button">{{'usuń' | translate}}</button>
+        <button class="btn-menu" (click)="edit(); toggled = false; $event.stopPropagation()" type="button">{{'edytuj' | translate}}</button>
+        <button class="btn-menu" (click)="delete(); toggled = false; $event.stopPropagation()" type="button">{{'usuń' | translate}}</button>
       </span>
     </span>
   </td>
