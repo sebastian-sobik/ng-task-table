@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-page404',
@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./page404.component.scss']
 })
 export class Page404Component {
-
 }
