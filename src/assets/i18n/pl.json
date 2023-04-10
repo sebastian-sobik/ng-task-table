@@ -13,5 +13,7 @@
   "namePlaceholder" : "imie",
   "biographyPlaceholder": "(opcjonalne) Uzupełnij życiorys.",
   "zmień": "Zmień",
-  "dodaj": "Dodaj użytkownika"
+  "dodaj": "Dodaj użytkownika",
+  "Message404": "Nie znaleziono takiej strony"
+
 }

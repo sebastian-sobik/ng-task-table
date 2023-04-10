@@ -13,6 +13,7 @@
   "namePlaceholder" : "name",
   "biographyPlaceholder": "(optional) Insert biography.",
   "zmień": "Submit",
-  "dodaj": "Add user"
+  "dodaj": "Add user",
+  "Message404": "Page not found"
 }
 
