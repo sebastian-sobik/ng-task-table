@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {User} from "../../../shared/user.model";
 import {SelectedUsersService} from "../../../selected-users.service";
@@ -18,7 +18,8 @@ export class RowComponent {
   toggled = false;
 
   constructor(public translateService: TranslateService,
-              private selectedUsersService: SelectedUsersService) {
+              private selectedUsersService: SelectedUsersService,
+              private elementRef: ElementRef) {
     this.selectedUsersService.onCleared$.subscribe(
       () => this.selected = false
     )
@@ -40,5 +41,12 @@ export class RowComponent {
 
   delete() {
     this.onDelete.emit(this.user)
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeMenu(event: Event): void {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.toggled = false;
+    }
   }
 }
