@@ -3,7 +3,7 @@
 @use "../../styles/mixins" as *;
 
 h2 {
-  font-size: 24px;
+  font-size: $font-size-big;
   font-family: $font-family-second;
   font-weight: $font-weight-bold;
   letter-spacing: 0.7px;

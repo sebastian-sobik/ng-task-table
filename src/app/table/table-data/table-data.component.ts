@@ -33,9 +33,6 @@ export class TableDataComponent implements OnInit, OnDestroy {
     this.countSubscription = this.selectedUsers.onCountChanged$.subscribe(
       count => this.numSelectedUsers = count
     )
-    this.subscription = this.selectedUsers.onCleared$.subscribe(
-      () => {}
-    )
   }
 
   rowSelect($id: number) {

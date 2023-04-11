@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {TranslateService} from "@ngx-translate/core";
 
@@ -15,7 +15,7 @@ export class HeaderComponent {
   constructor(private translate: TranslateService ) {
   }
 
-  onChangeLang() : void {
+  onLanguageChanged() : void {
     let language = this.form.value.language;
     this.translate.use(language!);
   }

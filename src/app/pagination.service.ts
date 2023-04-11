@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
-import {_Range} from "./range.model";
+import {_Range} from "./shared/range.model";
 
 export type stepCount = 10 | 20 | 50;
 

@@ -5,8 +5,8 @@
   @include flex(space-between,center,column);
   gap: 40px;
 
-  max-width: $table-max-width;
   width: 100%;
+  max-width: $table-max-width;
   padding: $table-padding;
 
   @media (max-width: 1100px) {

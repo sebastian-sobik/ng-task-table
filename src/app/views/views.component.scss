@@ -6,16 +6,16 @@
   max-width: 1600px;
   padding: 20px 20px 40px 20px;
   overflow-y: scroll;
+  color: $clr-font-primary;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
   align-items: start;
+
   @media (min-width: 1650px) {
     grid-template-columns: repeat(4, 1fr);
   }
-
-  color: $clr-font-primary;
 }
 
 .user-data {

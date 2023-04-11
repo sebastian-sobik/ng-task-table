@@ -1,7 +1,7 @@
 <form class="form-language" [formGroup]="form" >
   <span>
     <input
-      (change)="onChangeLang()"
+      (change)="onLanguageChanged()"
       type="radio"
       id="english"
       value="en"
@@ -13,7 +13,7 @@
   <span>|</span>
   <span>
     <input
-      (change)="onChangeLang()"
+      (change)="onLanguageChanged()"
       type="radio"
       id="polish"
       value="pl"

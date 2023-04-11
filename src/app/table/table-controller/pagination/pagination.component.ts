@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {map, Subscription} from "rxjs";
 import {_Range} from "../../../shared/range.model";
-import {PaginationService} from "../../../shared/pagination.service";
+import {PaginationService} from "../../../pagination.service";
 import {Router} from "@angular/router";
 
 @Component({
