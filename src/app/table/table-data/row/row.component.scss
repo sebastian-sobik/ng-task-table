@@ -30,9 +30,11 @@
     display: none;
   }
 
-  &:hover {
-    cursor: pointer;
-    background-color: $clr-row-hover-bg
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+      background-color: $clr-row-hover-bg
+    }
   }
 }
 
