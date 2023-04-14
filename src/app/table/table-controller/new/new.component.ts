@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {NonNullableFormBuilder, Validators} from "@angular/forms";
 import {UserDataService} from "../../../user-data.service";
 import {UserWithoutID} from "../../../shared/user.model";
@@ -10,9 +10,9 @@ import {Subscription} from "rxjs";
   templateUrl: './new.component.html',
   styleUrls: ['./new.component.scss']
 })
-export class NewComponent implements AfterViewChecked, OnDestroy {
+export class NewComponent implements  OnDestroy {
   subscription: Subscription | undefined;
-  closed = true;
+  closed = false;
   isEditing = false;
   editingID: number = -1;
 
@@ -50,10 +50,6 @@ export class NewComponent implements AfterViewChecked, OnDestroy {
       'birthDate': user.birthDate.toISOString().slice(0, 10) as string,
       'biography': user.biography ?? ''
     })
-  }
-
-  ngAfterViewChecked() {
-    this.closed = false;
   }
 
   onSubmit() {
