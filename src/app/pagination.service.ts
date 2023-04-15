@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Subject} from "rxjs";
+import {BehaviorSubject, map} from "rxjs";
 import {_Range} from "./shared/range.model";
 
 export type stepCount = 10 | 20 | 50;
@@ -8,15 +8,11 @@ export type stepCount = 10 | 20 | 50;
   providedIn: 'root'
 })
 export class PaginationService {
-  public onRangeUpdate: Subject<_Range> = new Subject<_Range>();
   private from: number = 0;
   private to: number = 19;
   private step: stepCount = 20;
   private maxIndex: number = 0;
-
-  constructor() {
-    this.onRangeUpdate.next({from: this.from, to: this.to});
-  }
+  public  range$: BehaviorSubject<_Range> = new BehaviorSubject<_Range>({from: this.from, to: this.to});
 
   setMaxIndex(maxIndex: number) {
     this.maxIndex = maxIndex;
@@ -27,21 +23,30 @@ export class PaginationService {
         this.from = 0;
       }
     }
-    this.onRangeUpdate.next({from: this.from, to: this.to});
+    this.range$.next({from: this.from, to: this.to});
+  }
+
+  get Range() {
+    return this.range$.pipe(map(range => {
+      return {
+        from: (range.from + 1),
+        to: (range.to + 1)
+      }
+    }))
   }
 
   getRangeIndexes() {
-    return {from: this.from, to: this.to}
+    return this.range$.getValue();
   }
 
   goBackward() {
     this.moveRange(-this.step);
-    this.onRangeUpdate.next({from: this.from, to: this.to})
+    this.range$.next({from: this.from, to: this.to})
   }
 
   goForward() {
     this.moveRange(this.step);
-    this.onRangeUpdate.next({from: this.from, to: this.to})
+    this.range$.next({from: this.from, to: this.to})
   }
 
   private moveRange(step: number) {
@@ -78,6 +83,6 @@ export class PaginationService {
     } else {
       this.to = this.from + step - 1
     }
-    this.onRangeUpdate.next({from: this.from, to: this.to})
+    this.range$.next({from: this.from, to: this.to})
   }
 }

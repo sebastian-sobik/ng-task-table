@@ -5,9 +5,9 @@
   <button type="button" (click)="onDecreaseRange()">
     <i class="bi bi-chevron-left"></i>
   </button>
-  <span>
-{{range?.from}} {{'do' | translate}} {{range?.to}}
-</span>
+  <span *ngIf="range$ | async as range">
+    {{range.from}} {{'do' | translate}} {{range.to}}
+  </span>
   <button type="button" (click)="onIncreaseRange()">
     <i class="bi bi-chevron-right"></i>
   </button>

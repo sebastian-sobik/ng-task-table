@@ -17,7 +17,7 @@ export class UserDataService {
   constructor(private pagination: PaginationService,
               private selectedUsersService: SelectedUsersService,
               private idService: IdService) {
-    this.pagination.onRangeUpdate.subscribe(
+    this.pagination.range$.subscribe(
       ({from, to}) => {
         this.paginatedUsers$.next(this.allUsers.slice(from, to + 1))
       }
