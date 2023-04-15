@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {User, UserWithoutID} from "./shared/user.model";
 import {users} from './shared/fakeUsers';
-import {Subject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {PaginationService} from "./pagination.service";
 import {SelectedUsersService} from "./selected-users.service";
 import {IdService} from "./id.service";
@@ -10,58 +10,59 @@ import {IdService} from "./id.service";
   providedIn: 'root'
 })
 export class UserDataService {
-  usersUpdated$: Subject<User[]> = new Subject<User[]>();
-  private users: User[] = users;
+  // @ts-ignore
+  paginatedUsers$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>(undefined);
+  private allUsers: User[] = users;
 
   constructor(private pagination: PaginationService,
               private selectedUsersService: SelectedUsersService,
               private idService: IdService) {
     this.pagination.onRangeUpdate.subscribe(
       ({from, to}) => {
-        this.usersUpdated$.next(this.users.slice(from, to + 1))
+        this.paginatedUsers$.next(this.allUsers.slice(from, to + 1))
       }
     )
-    this.pagination.setMaxIndex(this.users.length - 1);
+    this.pagination.setMaxIndex(this.allUsers.length - 1);
   }
 
   getUser(id: number): User {
-    const user: User | undefined = this.users.find(
+    const user: User | undefined = this.allUsers.find(
       user => user.id === +id
     );
     if (user) {
       return user;
+    } else {
+      throw Error("Trying to get user with not existing id")
     }
-    throw Error("Trying to get user with not existing id")
   }
 
-  getUsers(): User[] {
-    const {from, to} = this.pagination.getRangeIndexes();
-    return this.users.slice(from, to + 1);
+  getUsers(): Observable<User[]> {
+    return this.paginatedUsers$.asObservable();
   }
 
   getAllUsers(): User[] {
-    return this.users.slice();
+    return this.allUsers.slice();
   }
 
   addUser(user: UserWithoutID): void {
     const userWithId = {...user, id: this.idService.newId}
-    this.users.unshift(userWithId);
-    this.pagination.setMaxIndex(this.users.length - 1);
+    this.allUsers.unshift(userWithId);
+    this.pagination.setMaxIndex(this.allUsers.length - 1);
   }
 
   removeUser(user: User): void {
-    const index = this.users.indexOf(user);
-    this.users.splice(index, 1);
-    this.pagination.setMaxIndex(this.users.length - 1);
+    const index = this.allUsers.indexOf(user);
+    this.allUsers.splice(index, 1);
+    this.pagination.setMaxIndex(this.allUsers.length - 1);
   }
 
   removeSelectedUsers(): void {
     let idToDelete: number[] = this.selectedUsersService.getSelectedId();
-    this.users = this.users.filter(
+    this.allUsers = this.allUsers.filter(
       user => this.filterUsersByID(user, idToDelete)
     )
     this.selectedUsersService.clear();
-    this.pagination.setMaxIndex(this.users.length - 1);
+    this.pagination.setMaxIndex(this.allUsers.length - 1);
   }
 
   private filterUsersByID(user: User, idToDelete: number[]) {
@@ -75,15 +76,15 @@ export class UserDataService {
   }
 
   updateUser(id: number, newUser: UserWithoutID) {
-    let index = this.users.findIndex(
+    let index = this.allUsers.findIndex(
       user => user.id === +id
     )
     if (index >= 0) {
-      this.users[index] = {...newUser, id: +id};
+      this.allUsers[index] = {...newUser, id: +id};
     } else {
       throw Error('trying to update not existing user')
     }
     const {from, to} = this.pagination.getRangeIndexes();
-    this.usersUpdated$.next(this.users.slice(from, to + 1));
+    this.paginatedUsers$.next(this.allUsers.slice(from, to + 1));
   }
 }

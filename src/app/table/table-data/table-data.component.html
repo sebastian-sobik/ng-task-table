@@ -11,7 +11,7 @@
   </thead>
   <tbody>
   <app-row
-    *ngFor="let user of data"
+    *ngFor="let user of users$ | async"
     [user]="user"
     (onSelected)="rowSelect($event)"
     (onDiscarded)="rowDiscard($event)"

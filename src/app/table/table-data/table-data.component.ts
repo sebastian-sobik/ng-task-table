@@ -11,10 +11,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./table-data.component.scss']
 })
 export class TableDataComponent implements OnInit, OnDestroy {
-  subscription: Subscription | undefined;
-  dataSubscription: Subscription | undefined
-  countSubscription: Subscription | undefined
-  data: User[] = []
+  subscriptions = new Subscription()
+  users$ = this.userDataService.getUsers();
   numSelectedUsers = 0
 
   constructor(private userDataService: UserDataService,
@@ -23,15 +21,15 @@ export class TableDataComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.data = this.userDataService.getUsers();
-    this.dataSubscription = this.userDataService.usersUpdated$.subscribe(
-      users => {
-        this.data = users
-        this.selectedUsers.clear();
-      }
+    this.subscriptions.add(
+      this.userDataService.paginatedUsers$.subscribe(
+        () => this.selectedUsers.clear()
+      )
     )
-    this.countSubscription = this.selectedUsers.onCountChanged$.subscribe(
-      count => this.numSelectedUsers = count
+    this.subscriptions.add(
+      this.selectedUsers.onCountChanged$.subscribe(
+        count => this.numSelectedUsers = count
+      )
     )
   }
 
@@ -55,8 +53,6 @@ export class TableDataComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.dataSubscription?.unsubscribe();
-    this.countSubscription?.unsubscribe()
-    this.subscription?.unsubscribe();
+    this.subscriptions?.unsubscribe();
   }
 }
