@@ -3,14 +3,14 @@ import {NonNullableFormBuilder, Validators} from "@angular/forms";
 import {UserDataService} from "../../../user-data.service";
 import {UserWithoutID} from "../../../shared/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs";
+import {filter, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
   styleUrls: ['./new.component.scss']
 })
-export class NewComponent implements  OnDestroy {
+export class NewComponent implements OnDestroy {
   subscription: Subscription | undefined;
   closed = false;
   isEditing = false;
@@ -18,7 +18,7 @@ export class NewComponent implements  OnDestroy {
 
   form = this.fb.group({
       'name': ['', Validators.required],
-      'age': [0, [Validators.required, Validators.pattern("^[0-9]*$")]], //validate it as num>0
+      'age': [0, [Validators.required, Validators.pattern("^[0-9]*$")]],
       'birthDate': [new Date().toISOString().slice(0, 10) as string, [Validators.required, Validators.pattern(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/)]],
       'biography': ['', [Validators.maxLength(250)]]
     }
@@ -29,14 +29,15 @@ export class NewComponent implements  OnDestroy {
               private router: Router,
               private route: ActivatedRoute) {
     this.subscription = this.route.queryParams
-      .subscribe(
+      .pipe(filter(
         qParams => {
           const isEditing = qParams['isEditing'] === "true"
           const id = qParams['userID'];
-          if (isEditing && id) {
-            this.initEditingForm(id);
-          }
+          return isEditing && id;
         }
+      ))
+      .subscribe(
+        qParams => this.initEditingForm(qParams['userID'])
       )
   }
 
