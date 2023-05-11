@@ -15,12 +15,8 @@ import {HeaderComponent} from './header/header.component';
 import {ViewsComponent} from './views/views.component';
 import {Page404Component} from './page404/page404.component';
 import {RowComponent} from './table/table-data/row/row.component';
-import {PaginationComponent} from './table/table-controller/pagination/pagination.component';
-import {DeletingComponent} from './table/table-controller/deleting/deleting.component';
-import {NewComponent} from './table/table-controller/new/new.component';
-import {SelectComponent} from './table/table-controller/pagination/select/select.component';
-import {TableDataComponent} from "./table/table-data/table-data.component";
 import {TableNavigationModule} from "./table-navigation/table-navigation.module";
+import {TableDataComponent} from "./table/table-data/table-data.component";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,10 +34,6 @@ registerLocaleData(localeEn);
     Page404Component,
     RowComponent,
     TableComponent,
-    PaginationComponent,
-    DeletingComponent,
-    NewComponent,
-    SelectComponent,
     TableDataComponent,
   ],
   imports: [

@@ -34,14 +34,14 @@ export class TableDataComponent implements OnInit, OnDestroy {
     )
   }
 
-  rowSelect($id: number) {
+  rowSelect($id : any) {
     if (this.numSelectedUsers === 0) {
       this.TableNavigation.pickDeleting();
     }
     this.selectedUsers.addUserId($id)
   }
 
-  rowDiscard($id: number) {
+  rowDiscard($id : any) {
     this.selectedUsers.removeUserId($id);
   }
 
