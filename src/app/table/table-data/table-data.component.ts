@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {User} from "../../shared/user.model";
 import {Subscription} from "rxjs";
 import {UserDataService} from "../../user-data.service";
 import {SelectedUsersService} from "../../selected-users.service";
@@ -45,7 +44,7 @@ export class TableDataComponent implements OnInit, OnDestroy {
     this.selectedUsers.removeUserId($id);
   }
 
-  rowDelete($user: User) {
+  rowDelete($user: any) {
     this.userDataService.removeUser($user);
   }
 

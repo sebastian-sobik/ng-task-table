@@ -34,7 +34,7 @@ registerLocaleData(localeEn);
     Page404Component,
     RowComponent,
     TableComponent,
-    TableDataComponent,
+    TableDataComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,8 @@ export class RowComponent {
   @Output() onDiscarded: EventEmitter<number> = new EventEmitter<number>();
   @Output() onDelete: EventEmitter<User> = new EventEmitter<User>();
   @Output() onEdit: EventEmitter<number> = new EventEmitter<number>();
-  @Input() user!: User;
+  // @ts-ignore
+  @Input() user: User;
   selected = false;
   toggled = false;
 

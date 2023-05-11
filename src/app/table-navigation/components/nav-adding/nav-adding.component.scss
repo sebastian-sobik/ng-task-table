@@ -44,6 +44,7 @@
   border-radius: 1rem;
 
   transition: $editor-transition;
+  will-change: transform;
 
   @media (max-width: 520px) {
     padding: $editor-padding-sd

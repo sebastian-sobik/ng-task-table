@@ -16,7 +16,6 @@ import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
-
     NavigationContainerComponent,
     NavAddingContainerComponent,
     NavPaginationContainerComponent,
@@ -35,4 +34,5 @@ import {TranslateModule} from "@ngx-translate/core";
     TranslateModule
   ]
 })
-export class TableNavigationModule { }
+export class TableNavigationModule {
+}

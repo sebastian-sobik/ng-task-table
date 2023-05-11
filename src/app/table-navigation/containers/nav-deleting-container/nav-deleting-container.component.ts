@@ -1,8 +1,8 @@
 import {Component, OnDestroy} from '@angular/core';
 import {SelectedUsersService} from "../../../selected-users.service";
 import {Subscription, tap} from "rxjs";
-import {TableNavigationFacadeService} from "../../table-navigation-facade.service";
 import {UserDataService} from "../../../user-data.service";
+import {TableNavigationFacadeService} from "../../table-navigation-facade.service";
 
 @Component({
   selector: 'app-nav-deleting-container',
