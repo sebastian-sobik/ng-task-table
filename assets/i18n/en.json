@@ -1,0 +1,20 @@
+{
+  "welcomeMessage": "App is working in English!",
+  "edytuj": "edit",
+  "usuń": "delete",
+  "menu": "menu",
+  "imię": "name",
+  "wiek": "age",
+  "data urodzenia": "birth date",
+  "życiorys": "biography",
+  "do": "to",
+  "strona główna": "main",
+  "widoki": "views",
+  "namePlaceholder" : "name",
+  "biographyPlaceholder": "(optional) Insert biography.",
+  "zmień": "Submit",
+  "dodaj": "Add user",
+  "Message404": "Page not found",
+  "DeletingMessage" : "Selected users"
+}
+

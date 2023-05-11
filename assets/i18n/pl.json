@@ -1,0 +1,19 @@
+{
+  "welcomeMessage": "Aplikacja działa po Polsku, yay!",
+  "edytuj": "edytuj",
+  "usuń": "usuń",
+  "menu": "menu",
+  "imię": "imię",
+  "wiek": "wiek",
+  "data urodzenia": "data urodzenia",
+  "życiorys": "życiorys",
+  "do": "do",
+  "strona główna": "main",
+  "widoki": "widoki",
+  "namePlaceholder" : "imie",
+  "biographyPlaceholder": "(opcjonalne) Uzupełnij życiorys.",
+  "zmień": "Zmień",
+  "dodaj": "Dodaj użytkownika",
+  "Message404": "Nie znaleziono takiej strony",
+  "DeletingMessage" : "Zaznaczono"
+}
