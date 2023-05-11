@@ -1,0 +1,163 @@
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/colors" as *;
+
+:host {
+  @include flex(space-between, center, row);
+  padding: 20px 40px;
+}
+
+.editor {
+  position: relative;
+  flex-shrink: 0;
+  min-height: $controller-height;
+  width: 100%;
+  max-width: $controller-max-width;
+  background-color: transparent;
+
+
+  font-family: $font-family-second;
+  font-size: $font-size-medium;
+
+  input, textarea {
+    font-size: inherit;
+    font-family: inherit;
+  }
+}
+
+.editor {
+  display: flex;
+  gap: 20px;
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  height: $editor-height;
+  width: 100%;
+  padding: $editor-padding;
+
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+
+  transition: $editor-transition;
+
+  @media (max-width: 520px) {
+    padding: $editor-padding-sd
+  }
+}
+
+.btn-close {
+  flex-shrink: 0;
+  transition: $btn-rotate-transition;
+
+  @media (max-width: 520px) {
+    &.hide-at-520 {
+      display: none;
+    }
+  }
+
+  @media (min-width: 520px) {
+    &.hide-from-520 {
+      display: none;
+    }
+  }
+}
+
+.user-form {
+  flex-grow: 1;
+  @include flex(space-between, null, column);
+  gap: 20px;
+
+  transition: opacity 200ms ease-in;
+
+  input,
+  textarea {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 0.3rem;
+
+    &.ng-touched.ng-invalid {
+      border: 1px solid pink;
+    }
+  }
+
+  .user-required-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    @media (max-width: 520px) {
+      flex-wrap: wrap;
+    }
+
+    input {
+      padding: $form-input-padding;
+      width: 100%;
+
+      @media (max-width: 520px) {
+        text-align: center;
+        min-width: 100%;
+      }
+    }
+
+    input[formControlName="name"] {
+    }
+
+    input[formControlName="age"] {
+      max-width: 70px;
+      text-align: center;
+
+      @media (max-width: 520px) {
+        max-width: none;
+      }
+    }
+
+    input[formControlName="birthDate"] {
+      min-width: 20px;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    padding: 10px;
+    flex-grow: 5;
+    font-size: $font-size-small;
+  }
+
+  .btn-submit {
+    height: 50px;
+    padding: 5px 10px;
+    border: 1px solid grey;
+    border-radius: 0.3rem;
+  }
+
+  .bottom {
+    display: flex;
+    gap: 10px;
+
+    .btn-submit {
+      flex-grow: 1;
+    }
+  }
+}
+
+// Closed state
+.editor.closed {
+  height: 85px;
+  padding: 20px 40px;
+  background-color: $clr-pagination-bg;
+
+  .btn-close {
+    transform: rotate(135deg);
+  }
+
+  box-shadow: none;
+
+  form {
+    opacity: 0;
+  }
+
+}

@@ -1,0 +1,11 @@
+@use "../../../../styles/mixins" as *;
+
+:host {
+  @include flex(space-between, center, row);
+  padding: 20px 40px;
+}
+
+.pagination {
+  @include flex(space-between, center, row);
+  width: 140px;
+}

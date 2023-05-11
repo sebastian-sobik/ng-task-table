@@ -20,6 +20,7 @@ import {DeletingComponent} from './table/table-controller/deleting/deleting.comp
 import {NewComponent} from './table/table-controller/new/new.component';
 import {SelectComponent} from './table/table-controller/pagination/select/select.component';
 import {TableDataComponent} from "./table/table-data/table-data.component";
+import {TableNavigationModule} from "./table-navigation/table-navigation.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -54,7 +55,11 @@ registerLocaleData(localeEn);
         deps: [HttpClient]
       }
     }),
-    HttpClientModule
+    HttpClientModule,
+    TableNavigationModule
+  ],
+  exports: [
+    TranslateModule
   ],
   providers: [
   ],

@@ -1,0 +1,10 @@
+<button class="btn-side" (click)="onDelete()" type="button">
+  <i class="bi bi-trash"></i>
+</button>
+<span>
+<!--  TODO: dodaj translacje-->
+  {{"DeletingMessage" | translate}}: {{count$}}
+</span>
+<button class="btn-side" (click)="onCancel()" type="button">
+  <i class="bi bi-x"></i>
+</button>

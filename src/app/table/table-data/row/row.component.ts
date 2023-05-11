@@ -40,8 +40,8 @@ export class RowComponent {
   }
 
   delete() {
-    this.onDelete.emit(this.user)
-  }
+    this.onDelete.emit(this.user);
+   }
 
   @HostListener('document:click', ['$event'])
   closeMenu(event: Event): void {

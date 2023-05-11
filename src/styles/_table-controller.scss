@@ -2,20 +2,15 @@
 @use "colors" as *;
 @use "variables" as *;
 
-app-pagination,
-app-deleting {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-app-pagination,
-app-deleting,
-app-editing,
-app-new
+app-nav-adding,
+app-nav-deleting,
+app-nav-pagination
 {
   color: $clr-pagination-font;
   background-color: $clr-pagination-bg;
   font-family: $font-family-default;
   font-weight: $font-weight-medium;
+  border-radius: 1rem;
 
 
   .hidden {
@@ -35,22 +30,6 @@ app-new
     i {
       color: $clr-icon;
       font-size: 20px;
-    }
-  }
-}
-
-app-pagination {
-  .pagination {
-    @include flex(space-between, center, row);
-    width: 140px;
-  }
-}
-
-app-deleting {
-  .btn-side:hover:has( >.bi-trash ) {
-    background-color: $clr-bg-trash;
-    .bi-trash {
-      color: black;
     }
   }
 }

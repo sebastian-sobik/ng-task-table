@@ -1,0 +1,45 @@
+<div class="editor" [class.closed]="closed">
+  <button class="btn-side btn-close hide-at-520" (click)="onCancel()" type="button">
+    <i class="bi bi-x"></i>
+  </button>
+  <form
+    class="user-form"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+  >
+    <p class="user-required-info">
+      <input
+        formControlName="name"
+        placeholder='{{"namePlaceholder" | translate}}'
+        type="text"
+      >
+      <input
+        formControlName="age"
+        placeholder="age"
+        type="number"
+        min="0"
+        step="1"
+      >
+
+      <input
+        formControlName="birthDate"
+        type="date"
+      >
+    </p>
+    <textarea
+      formControlName="biography"
+      placeholder='{{"biographyPlaceholder" | translate}}'
+      maxlength="250"
+    ></textarea>
+    <p class="bottom">
+      <button class="btn-side btn-close hide-from-520" (click)="onCancel()" type="button">
+        <i class="bi bi-x"></i>
+      </button>
+      <button class="btn-submit " >{{(isEditing ? 'zmień'  : 'dodaj') | translate}}</button>
+    </p>
+  </form>
+
+</div>
+
+
+

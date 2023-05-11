@@ -1,0 +1,15 @@
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/colors" as *;
+
+:host {
+  @include flex(space-between, center, row);
+  padding: 20px 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-side:hover:has( >.bi-trash ) {
+  background-color: $clr-bg-trash;
+  .bi-trash {
+    color: black;
+  }
+}

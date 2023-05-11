@@ -1,0 +1,10 @@
+@use "../../../../styles/mixins" as *;
+
+:host {
+  max-width: 750px;
+  min-height: 85px;
+  width: 100%;
+  border-radius: 1rem;
+}
+
+

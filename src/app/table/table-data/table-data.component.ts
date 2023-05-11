@@ -3,7 +3,7 @@ import {User} from "../../shared/user.model";
 import {Subscription} from "rxjs";
 import {UserDataService} from "../../user-data.service";
 import {SelectedUsersService} from "../../selected-users.service";
-import {Router} from "@angular/router";
+import {TableNavigationFacadeService} from "../../table-navigation/table-navigation-facade.service";
 
 @Component({
   selector: 'app-table-data',
@@ -15,13 +15,14 @@ export class TableDataComponent implements OnInit, OnDestroy {
   users$ = this.userDataService.getUsers();
   numSelectedUsers = 0
 
-  constructor(private userDataService: UserDataService,
-              private selectedUsers: SelectedUsersService,
-              private router: Router) {
+  constructor(protected userDataService: UserDataService,
+              protected selectedUsers: SelectedUsersService,
+              protected TableNavigation: TableNavigationFacadeService) {
   }
 
   ngOnInit() {
     this.subscriptions.add(
+      //TODO: sprawdzić do czego to jest potrzebne
       this.userDataService.paginatedUsers$.subscribe(
         () => this.selectedUsers.clear()
       )
@@ -35,7 +36,7 @@ export class TableDataComponent implements OnInit, OnDestroy {
 
   rowSelect($id: number) {
     if (this.numSelectedUsers === 0) {
-      this.router.navigate(["main", "deleting"])
+      this.TableNavigation.pickDeleting();
     }
     this.selectedUsers.addUserId($id)
   }
@@ -49,7 +50,7 @@ export class TableDataComponent implements OnInit, OnDestroy {
   }
 
   onEdit($id: number) {
-    this.router.navigate(["main", "new"], {queryParams: {isEditing: "true", userID: $id}})
+    this.TableNavigation.pickEditingUser($id)
   }
 
   ngOnDestroy() {

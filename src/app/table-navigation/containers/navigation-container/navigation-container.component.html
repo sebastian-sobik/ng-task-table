@@ -1,0 +1,5 @@
+<ng-container [ngSwitch]="state$ | async">
+  <app-nav-pagination-container *ngSwitchCase="navigationStateEnum.Pagination"></app-nav-pagination-container>
+  <app-nav-deleting-container   *ngSwitchCase="navigationStateEnum.Deleting"></app-nav-deleting-container>
+  <app-nav-adding-container     *ngSwitchCase="navigationStateEnum.Editing"></app-nav-adding-container>
+</ng-container>

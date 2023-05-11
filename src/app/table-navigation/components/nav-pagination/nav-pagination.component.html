@@ -1,0 +1,15 @@
+<button class="btn-side" type="button" (click)="onEditor()">
+  <i class="bi bi-plus"></i>
+</button>
+<div class="pagination">
+  <button type="button" (click)="onDecreaseRange()">
+    <i class="bi bi-chevron-left"></i>
+  </button>
+  <span>
+    {{range?.from ?? 0}} {{'do' | translate}} {{range?.to ?? 0}}
+  </span>
+  <button type="button" (click)="onIncreaseRange()">
+    <i class="bi bi-chevron-right"></i>
+  </button>
+</div>
+<app-select (onStepChanged)="onStepChanged($event)"></app-select>

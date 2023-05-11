@@ -1,0 +1,8 @@
+<app-nav-pagination
+  [range] = 'range$ | async'
+  (backward)="onBackward()"
+  (forward)="onForward()"
+  (edit)="onEdit()"
+  (stepChanged)="onStepChanged($event)"
+>
+</app-nav-pagination>

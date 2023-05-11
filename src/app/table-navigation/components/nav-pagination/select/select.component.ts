@@ -1,24 +1,22 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {PaginationService, stepCount} from "../../../../pagination.service";
+import {stepCount} from "../../../../pagination.service";
 
 @Component({
-  selector: 'app-form-select',
+  selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent {
+  @Output() onStepChanged = new EventEmitter<stepCount>();
   form = new FormGroup({
     'paginationStep': new FormControl('20')
   })
 
-  constructor(private paginationService : PaginationService) {
-  }
-
 
   onChange() {
     const paginationStep = this.form.value.paginationStep;
-    //@ts-ignore
-    paginationStep ? this.paginationService.setStepCount(+paginationStep as stepCount) : null;
+    // @ts-ignore
+    this.onStepChanged.emit(paginationStep as stepCount);
   }
 }

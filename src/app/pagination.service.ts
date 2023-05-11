@@ -40,12 +40,14 @@ export class PaginationService {
   }
 
   goBackward() {
-    this.moveRange(-this.step);
+    const step = this.step as number;
+    this.moveRange(-step);
     this.range$.next({from: this.from, to: this.to})
   }
 
   goForward() {
-    this.moveRange(this.step);
+    const step = this.step as number;
+    this.moveRange(step);
     this.range$.next({from: this.from, to: this.to})
   }
 
@@ -69,19 +71,23 @@ export class PaginationService {
   }
 
   setStepCount(step: stepCount) {
-    if (step > this.maxIndex) {
-      throw Error('Invalid step count')
-    }
-    this.step = step;
+    // @ts-ignore
+    const stepI = parseInt(step);
 
-    if (this.to + step > this.maxIndex) {
+    if (stepI > this.maxIndex) {
+      throw Error('Invalid stepI count')
+    }
+    // @ts-ignore
+    this.step = stepI as stepCount;
+
+    if (this.to + stepI > this.maxIndex) {
       this.to = this.maxIndex;
-      this.from = (this.maxIndex - step + 1);
+      this.from = (this.maxIndex - stepI + 1);
       if (this.from < 0) {
         this.from = 0;
       }
     } else {
-      this.to = this.from + step - 1
+      this.to = this.from + stepI - 1
     }
     this.range$.next({from: this.from, to: this.to})
   }

@@ -1,0 +1,22 @@
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/colors" as *;
+
+:host {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  height: $controller-height;
+  width: 100%;
+  max-width: $controller-max-width;
+  background-color: transparent;
+
+
+  font-family: $font-family-second;
+  font-size: $font-size-medium;
+
+  input, textarea {
+    font-size: inherit;
+    font-family: inherit;
+  }
+}
