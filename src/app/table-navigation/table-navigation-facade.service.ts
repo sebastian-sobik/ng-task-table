@@ -20,10 +20,6 @@ export class TableNavigationFacadeService {
     this.editingService.startCreating();
   }
 
-  stopEditing() {
-    this.navigationFacade.setCurrentState(NavigationStateEnum.Pagination);
-  }
-
   pickPagination() {
     this.navigationFacade.setCurrentState(NavigationStateEnum.Pagination);
   }

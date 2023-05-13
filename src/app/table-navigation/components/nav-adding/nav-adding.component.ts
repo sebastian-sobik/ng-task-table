@@ -53,7 +53,7 @@ export class NavAddingComponent implements OnInit, AfterViewInit {
       if (this.isEditing) {
         // @ts-ignore
         this.usersDataService.updateUser(this.editingID, newUser)
-        this.tableNavigationService.stopEditing();
+        this.onCancel();
       } else {
         this.usersDataService.addUser(newUser);
       }
