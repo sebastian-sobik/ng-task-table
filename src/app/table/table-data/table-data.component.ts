@@ -11,7 +11,7 @@ import {TableNavigationFacadeService} from "../../table-navigation/table-navigat
 })
 export class TableDataComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()
-  users$ = this.userDataService.getUsers();
+  users$ = this.userDataService.selectPaginatedUsers$();
   numSelectedUsers = 0
 
   constructor(protected userDataService: UserDataService,
@@ -27,7 +27,7 @@ export class TableDataComponent implements OnInit, OnDestroy {
       )
     )
     this.subscriptions.add(
-      this.selectedUsers.onCountChanged$.subscribe(
+      this.selectedUsers.count$.subscribe(
         count => this.numSelectedUsers = count
       )
     )

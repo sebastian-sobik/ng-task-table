@@ -16,7 +16,7 @@ export class NavDeletingContainerComponent implements OnDestroy {
   constructor(protected selectedService: SelectedUsersService,
               protected userDataService: UserDataService,
               protected tableNavigation: TableNavigationFacadeService) {
-    this.subscription = this.selectedService.onCountChanged$.pipe(tap(
+    this.subscription = this.selectedService.count$.pipe(tap(
       count => this.count$ = count
     )).subscribe(
       count => {
