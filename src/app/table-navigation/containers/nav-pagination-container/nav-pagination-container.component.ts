@@ -29,6 +29,7 @@ export class NavPaginationContainerComponent {
   }
 
   onStepChanged($event: any) {
-    this.paginationFacade.setStepCount($event);
+    const step = parseInt($event);
+    this.paginationFacade.setStepCount(step);
   }
 }

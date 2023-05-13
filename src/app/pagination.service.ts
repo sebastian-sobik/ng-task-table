@@ -67,23 +67,20 @@ export class PaginationService {
   }
 
   setStepCount(step: number) {
-    // @ts-ignore
-    const stepI = parseInt(step);
 
-    if (stepI > this.maxIndex) {
-      throw Error('Invalid stepI count')
+    if (step > this.maxIndex) {
+      throw Error('Invalid step count')
     }
-    // @ts-ignore
-    this.step = stepI as stepCount;
+    this.step = step;
 
-    if (this.to + stepI > this.maxIndex) {
+    if (this.to + step > this.maxIndex) {
       this.to = this.maxIndex;
-      this.from = (this.maxIndex - stepI + 1);
+      this.from = (this.maxIndex - step + 1);
       if (this.from < 0) {
         this.from = 0;
       }
     } else {
-      this.to = this.from + stepI - 1
+      this.to = this.from + step - 1
     }
     this.range$.next({from: this.from, to: this.to})
   }
