@@ -16,16 +16,10 @@ export class TableDataComponent implements OnInit, OnDestroy {
 
   constructor(protected userDataService: UserDataService,
               protected selectedUsers: SelectedUsersService,
-              protected TableNavigation: TableNavigationFacadeService) {
+              protected tableNavigation: TableNavigationFacadeService) {
   }
 
   ngOnInit() {
-    this.subscriptions.add(
-      //TODO: sprawdzić do czego to jest potrzebne
-      this.userDataService.paginatedUsers$.subscribe(
-        () => this.selectedUsers.clear()
-      )
-    )
     this.subscriptions.add(
       this.selectedUsers.count$.subscribe(
         count => this.numSelectedUsers = count
@@ -35,7 +29,7 @@ export class TableDataComponent implements OnInit, OnDestroy {
 
   rowSelect($id : any) {
     if (this.numSelectedUsers === 0) {
-      this.TableNavigation.pickDeleting();
+      this.tableNavigation.pickDeleting();
     }
     this.selectedUsers.addUserId($id)
   }
@@ -49,7 +43,7 @@ export class TableDataComponent implements OnInit, OnDestroy {
   }
 
   onEdit($id: number) {
-    this.TableNavigation.pickEditingUser($id)
+    this.tableNavigation.pickEditingUser($id)
   }
 
   ngOnDestroy() {
