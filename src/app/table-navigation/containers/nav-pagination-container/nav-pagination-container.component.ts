@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {PaginationFacade} from "../../services/pagination-facade.service";
 import {_Range} from "../../../shared/range.model";
 import {Observable} from "rxjs";
-import {stepCount} from "../../../pagination.service";
 import {TableNavigationFacadeService} from "../../table-navigation-facade.service";
 
 @Component({
@@ -29,7 +28,7 @@ export class NavPaginationContainerComponent {
     this.tableNavigationFacade.pickCreatingUser();
   }
 
-  onStepChanged($event: stepCount) {
+  onStepChanged($event: any) {
     this.paginationFacade.setStepCount($event);
   }
 }

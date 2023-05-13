@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {_Range} from "../../../shared/range.model";
-import {stepCount} from "../../../pagination.service";
 
 @Component({
   selector: 'app-nav-pagination',
@@ -11,7 +10,7 @@ export class NavPaginationComponent {
   @Output() backward = new EventEmitter<void>()
   @Output() forward = new EventEmitter<void>()
   @Output() edit = new EventEmitter<void>()
-  @Output() stepChanged = new EventEmitter<stepCount>()
+  @Output() stepChanged = new EventEmitter<number>()
 
   @Input() range : _Range | null = null;
 
@@ -23,11 +22,11 @@ export class NavPaginationComponent {
     this.forward.emit()
   }
 
-  onEditor() {
+  activate_user_creation() {
     this.edit.emit()
   }
 
-  onStepChanged($event: stepCount) {
+  onStepChanged($event : any) {
     this.stepChanged.emit($event)
   }
 }

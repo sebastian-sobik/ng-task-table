@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {_Range} from "../../shared/range.model";
-import {PaginationService, stepCount} from "../../pagination.service";
+import {PaginationService} from "../../pagination.service";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class PaginationFacade {
     this.paginationService.goForward()
   }
 
-  setStepCount(step: stepCount) {
+  setStepCount(step: number) {
     this.paginationService.setStepCount(step);
   }
 

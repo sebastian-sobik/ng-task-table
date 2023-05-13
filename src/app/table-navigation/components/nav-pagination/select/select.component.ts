@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {stepCount} from "../../../../pagination.service";
 
 @Component({
   selector: 'app-select',
@@ -8,7 +7,7 @@ import {stepCount} from "../../../../pagination.service";
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent {
-  @Output() onStepChanged = new EventEmitter<stepCount>();
+  @Output() onStepChanged = new EventEmitter<number>();
   form = new FormGroup({
     'paginationStep': new FormControl('20')
   })

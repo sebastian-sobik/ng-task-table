@@ -2,17 +2,16 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, map} from "rxjs";
 import {_Range} from "./shared/range.model";
 
-export type stepCount = 10 | 20 | 50;
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaginationService {
-  private from: number = 0;
-  private to: number = 19;
-  private step: stepCount = 20;
-  private maxIndex: number = 0;
-  public  range$: BehaviorSubject<_Range> = new BehaviorSubject<_Range>({from: this.from, to: this.to});
+  private from = 0;
+  private to = 19;
+  private step = 20;
+  private maxIndex = 0;
+  public  range$ = new BehaviorSubject<_Range>({from: this.from, to: this.to});
 
   setMaxIndex(maxIndex: number) {
     this.maxIndex = maxIndex;
@@ -40,15 +39,11 @@ export class PaginationService {
   }
 
   goBackward() {
-    const step = this.step as number;
-    this.moveRange(-step);
-    this.range$.next({from: this.from, to: this.to})
+    this.moveRange(-this.step);
   }
 
   goForward() {
-    const step = this.step as number;
-    this.moveRange(step);
-    this.range$.next({from: this.from, to: this.to})
+    this.moveRange(this.step);
   }
 
   private moveRange(step: number) {
@@ -68,9 +63,10 @@ export class PaginationService {
       this.from += step;
       this.to += step;
     }
+    this.range$.next({from: this.from, to: this.to})
   }
 
-  setStepCount(step: stepCount) {
+  setStepCount(step: number) {
     // @ts-ignore
     const stepI = parseInt(step);
 
