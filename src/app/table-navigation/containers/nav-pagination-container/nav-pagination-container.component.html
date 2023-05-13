@@ -1,5 +1,6 @@
 <app-nav-pagination
   [range] = 'range$ | async'
+  [step] = 'initStep'
   (backward)="onBackward()"
   (forward)="onForward()"
   (edit)="onEdit()"

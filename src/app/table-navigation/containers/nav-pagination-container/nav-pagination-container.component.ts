@@ -11,9 +11,11 @@ import {TableNavigationFacadeService} from "../../table-navigation-facade.servic
 })
 export class NavPaginationContainerComponent {
   range$ : Observable<_Range> = this.paginationFacade.selectRange$();
+  initStep : number = 20;
 
   constructor(protected paginationFacade : PaginationFacade,
               protected tableNavigationFacade : TableNavigationFacadeService) {
+    this.initStep = paginationFacade.getStepCount();
   }
 
   onBackward() {

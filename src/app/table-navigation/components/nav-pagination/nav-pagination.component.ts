@@ -13,6 +13,7 @@ export class NavPaginationComponent {
   @Output() stepChanged = new EventEmitter<number>()
 
   @Input() range : _Range | null = null;
+  @Input('step') initStep : number = 20
 
   onDecreaseRange() {
     this.backward.emit()

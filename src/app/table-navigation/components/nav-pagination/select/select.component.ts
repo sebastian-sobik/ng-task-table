@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -8,13 +8,17 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class SelectComponent {
   @Output() onStepChanged = new EventEmitter<number>();
-  form = new FormGroup({
-    'paginationStep': new FormControl('20')
-  })
+  @Input('step') initStep : number = 20;
+  form : FormGroup | undefined;
 
+  ngOnInit() {
+    this.form = new FormGroup({
+      'paginationStep': new FormControl(this.initStep)
+    })
+  }
 
   onChange() {
-    const paginationStep = this.form.value.paginationStep;
+    const paginationStep = this.form?.value.paginationStep;
     // @ts-ignore
     this.onStepChanged.emit(paginationStep as stepCount);
   }

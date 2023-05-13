@@ -26,5 +26,9 @@ export class PaginationFacade {
     this.paginationService.setStepCount(step);
   }
 
+  getStepCount() : number {
+    return this.paginationService.Step;
+  }
+
 
 }

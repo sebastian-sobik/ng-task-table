@@ -34,6 +34,10 @@ export class PaginationService {
     }))
   }
 
+  get Step() {
+    return this.step;
+  }
+
   getRangeIndexes() {
     return this.range$.getValue();
   }
