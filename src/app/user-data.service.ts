@@ -11,12 +11,12 @@ import {IdService} from "./id.service";
 })
 export class UserDataService {
   // @ts-ignore
-  paginatedUsers$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>(undefined);
+  paginatedUsers$ = new BehaviorSubject<User[]>(undefined);
   private allUsers: User[] = users;
 
-  constructor(private pagination: PaginationService,
-              private selectedUsersService: SelectedUsersService,
-              private idService: IdService) {
+  constructor(protected pagination: PaginationService,
+              protected selectedUsersService: SelectedUsersService,
+              protected idService: IdService) {
     this.pagination.range$.subscribe(
       ({from, to}) => {
         this.paginatedUsers$.next(this.allUsers.slice(from, to + 1))
@@ -27,7 +27,7 @@ export class UserDataService {
 
   getUser(id: number): User {
     const user: User | undefined = this.allUsers.find(
-      user => user.id === +id
+      user => user.id === id
     );
     if (user) {
       return user;
@@ -36,7 +36,7 @@ export class UserDataService {
     }
   }
 
-  getUsers(): Observable<User[]> {
+  selectPaginatedUsers$(): Observable<User[]> {
     return this.paginatedUsers$.asObservable();
   }
 
@@ -51,33 +51,37 @@ export class UserDataService {
   }
 
   removeUser(user: User): void {
-    const index = this.allUsers.indexOf(user);
+    // const index = this.allUsers.indexOf(user);
+    const index = this.allUsers.findIndex(
+      usr => usr.id === user.id
+    );
+
     this.allUsers.splice(index, 1);
     this.pagination.setMaxIndex(this.allUsers.length - 1);
   }
 
   removeSelectedUsers(): void {
-    let idToDelete: number[] = this.selectedUsersService.getSelectedId();
+    let idsToDelete: number[] = this.selectedUsersService.getSelectedIds();
     this.allUsers = this.allUsers.filter(
-      user => this.filterUsersByID(user, idToDelete)
+      user => this.filterUsersByID(user, idsToDelete)
     )
     this.selectedUsersService.clear();
     this.pagination.setMaxIndex(this.allUsers.length - 1);
   }
 
-  private filterUsersByID(user: User, idToDelete: number[]) {
-    const index = idToDelete.indexOf(user.id);
+  private filterUsersByID(user: User, idsToDelete: number[]) {
+    const index = idsToDelete.indexOf(user.id);
     if (index < 0) {
       return true;
     } else {
-      idToDelete.splice(index, 1);
+      idsToDelete.splice(index, 1);
       return false;
     }
   }
 
   updateUser(id: number, newUser: UserWithoutID) {
     let index = this.allUsers.findIndex(
-      user => user.id === +id
+      user => user.id === id
     )
     if (index >= 0) {
       this.allUsers[index] = {...newUser, id: +id};
